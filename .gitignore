@@ -1,0 +1,9 @@
+.*
+_*
+*~
+PE2_files*
+
+!__*
+!.gitignore
+
+.Rproj.user
