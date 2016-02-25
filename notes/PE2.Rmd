@@ -8,7 +8,6 @@ output:
     latex_engine: xelatex
 ---
 
-
 Introductory Notes
 ====================================
 
@@ -457,7 +456,7 @@ points(x[!ind], y[!ind], pch = "x", col=2)
 Kadangi taškai pagal abi kordinates yra nepriklausomos,
 tai generavimas yra labai paprastas - atskirai generuojma $x$ ir atskirai $y$.
 O galutinis atsakymas yra apskritimo vidinių taškų proporcija padauginti iš keturkampio ploto. Taigi
-```{r pi2, , cache=TRUE}
+```{r pi2, cache=TRUE}
 N = 100000
 x = runif(N, -1, 1)
 y = runif(N, -1, 1)
