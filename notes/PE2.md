@@ -260,61 +260,45 @@ Sukursime RProject ir pademonstruosime kaip dirbama.
 
 ### Random variables in R
 
+R aplinkoje yra realiasuota labai daug atsitiktinių dydžių, žr. `?distributions`.
+Pastebėkite, kad visi jie naudoja ta pačia pavadinimu schemą. Pirmosios raidės yra
+`p`, `d`, `q`, ir `r`, o likusi dalis žymi skirstinio pavadinmą, pvz: `dnorm`, `pnorm`, `qnorm`, `rnorm`.
+
+
 
 ```r
-# ?dnorm
-# ?dpois
-
-# p ir d sarysis: p = \int d
+# pazisiurekime p ir d sarysi: p = \int d
+print("Skaiciai turi sutapti:")
 integrate(dnorm, -Inf, 1)
-```
-
-```
-## 0.8413448 with absolute error < 1.5e-05
-```
-
-```r
 pnorm(1)
-```
 
-```
-## [1] 0.8413447
-```
+# p ir q sarysis - tai vienas kitam prie6ingos funkcijos
+print("Ar nustebsite, kad atsakymas bus 0.66?")
+qnorm(pnorm(0.66))
 
-```r
-# p ir q sarysis
-qnorm(0.8413)
-```
-
-```
-## [1] 0.9998151
-```
-
-```r
-qnorm(pnorm(0.5))
-```
-
-```
-## [1] 0.5
-```
-
-```r
 # generavimas
+print("O cia galiausiai generavimo pvz:")
 x = rnorm(10000)
 summary(x)
 ```
 
 ```
+## [1] "Skaiciai turi sutapti:"
+## 0.8413448 with absolute error < 1.5e-05
+## [1] 0.8413447
+## [1] "Ar nustebsite, kad atsakymas bus 0.66?"
+## [1] 0.66
+## [1] "O cia galiausiai generavimo pvz:"
 ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## -3.848000 -0.666200 -0.002920  0.000766  0.665200  3.787000
+## -3.684000 -0.677300  0.006035  0.003606  0.668500  4.440000
 ```
 
+Pasižiurėkime grafini skirstinio vertinimą:
 
 
 ```r
 # sugeneruojame dydzius ir padrome grazu grafika palygonti teorija su praktika
-x = rnorm(20)
-
+x = rnorm(500)
 
 # 1. histograma su branduoliniu tankiu ir palyginimu su teoriniu
 hist(x, probability = TRUE)
@@ -325,11 +309,10 @@ curve(dnorm, lwd=2, col=2, add=TRUE)
 ![](PE2_files/figure-html/xprob_iliustration-1.png) 
 
 ```r
-# 2. empyrine pasiskirskirstymo funkcija (paieska, skaiciai, grafikai)
-
+# 2. empyrine pasiskirskirstymo funkcija 
 Fn <- ecdf(x)
 plot(Fn)
-curve(pnorm, -4, 4, add=TRUE, col=2)
+curve(pnorm, -4, 4, add=TRUE, col=2, lwd=2)
 ```
 
 ![](PE2_files/figure-html/xprob_iliustration-2.png) 
@@ -340,7 +323,9 @@ curve(pnorm, -4, 4, add=TRUE, col=2)
 Labai svarbus akcentas: funkcija nuo atsitiktinių dydžių - taip pat atsitiktinis dydis 
 (su savo pasiskirstymo funkcija). p.s. šiame fakte slypi statistikos esmė.
 
-Pvz: tegul $x \sim N(0,1)$ ir $y:= \sqrt{|x|}$. Koks $y$ vidurkis? Kam lygi tikimybė, kad $y < 1$? 
+#### Pvz. 1
+
+Tegul $x \sim N(0,1)$ ir $y:= \sqrt{|x|}$. Kaip atrodo $y$ skirstinys? Koks vidurkis? Kam lygi tikimybė, kad $y < 1$? 
 
 ```r
 # reneruojam x
@@ -348,54 +333,45 @@ x = rnorm(10000)
 
 # tada y
 y = sqrt(abs(x))
+
+# galiausiai gauname grafika:
 hist(y, probability = TRUE)
 lines(density(y), col=4, lwd=2)
 curve(dnorm(x, mean=mean(y), sd=sd(y)), lwd=2, col=2, add=TRUE)
 ```
 
-![](PE2_files/figure-html/yFromX-1.png) 
+![](PE2_files/figure-html/yFromX1-1.png) 
+
+
 
 ```r
 # kitos galimo isvados: mean, median, table (summary), density ir t.t.
 summary(y)
-```
 
-```
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00137 0.56320 0.82510 0.82520 1.08100 1.95100
-```
-
-```r
-# koki.a tikimybe, kad y >1
+# kokia tikimybe, kad y >1
 mean(y>1)
-```
 
-```
-## [1] 0.323
-```
-
-```r
-# kokia tikimybe, kad kad y in [1, 1.5]
+# kokia tikimybe, kad kad y yra intervale [1, 1.5]
 mean((1 <= y) & (y <=1.5))
-```
 
-```
-## [1] 0.2984
-```
-
-```r
-# kokiam x galio lygybe: P(y<x)=0.7
+# raskime 70% kvantili, t.y. toki x, kuriam galia lygybe: P(y<x)=0.7
 quantile(y, 0.7)
 ```
 
 ```
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.01213 0.56780 0.82100 0.82530 1.07400 1.98300 
+## [1] 0.3198
+## [1] 0.2926
 ##      70% 
-## 1.027192
+## 1.019593
 ```
 
 
 
-Pvz: Du žaidėja ridena kauliukus. Pirmasis žaidėjas meta du klausiukus, o antrasis tris. 
+#### Pvz. 2
+
+Du žaidėja ridena kauliukus. Pirmasis žaidėjas meta du klausiukus, o antrasis tris. 
 Vertinama išmestų kauliukų suma. Laimi tas žaidėjas, kurio išmestu taškų suma yra didesnė. 
 Jeigu iškrenta lygiosios, tai laimi pirmasis žaidėjas. Kokia tikimybė, kad laimės antrasis žaidėjas?
 
@@ -406,96 +382,72 @@ rollDice <- function(NDice){
   sum(sample(6, size=NDice, replace = TRUE))
 }
 
-
 # apply this function
 rollDice(2) # pirmo zaidejo ekspermentas
-```
-
-```
-## [1] 5
-```
-
-```r
 rollDice(3) # antro zaidejo
-```
-
-```
-## [1] 10
-```
-
-```r
 rollDice(2) >= rollDice(3) # zaidimo ekspermentas
-```
 
-```
-## [1] FALSE
-```
-
-```r
+# apibrezkime ekspermento funkcija
 experment <- function(){
   rollDice(2) >= rollDice(3) 
 }
 
-# lets find out the distribution of sum of two dices
+# lets find out the distribution of sum of two dices - abi uzklausos yra ekvivalencios
 sim = replicate(10000, rollDice(2) >= rollDice(3))
 sim = replicate(10000, experment())
-mean(sim)
-```
 
-```
-## [1] 0.2209
-```
-
-```r
 # lets estimate the probability P(dice(3)=<dice(2))
 mean(sim)
 ```
 
 ```
-## [1] 0.2209
+## [1] 5
+## [1] 12
+## [1] FALSE
+## [1] 0.2258
 ```
 
+#### Pvz. 3
 
-
-Pvz. Tegul $x_i \sim U(0,1), i={1,...,N}$. Stebėjimų vektorių pažymėkime $X$. 
+Tegul $x_i \sim U(0,1), i={1,...,N}$. Stebėjimų vektorių pažymėkime $X$. 
 Kaip atorodo aritmetinio vidurkio skirstinys? Griežtai kalbant mums reikia rasti funkcijos
 $$f(X) = \frac{\sum x_i}{N} $$
 skirstinį.
 
+Išpradžių išsigrėžkimte, kaip atrodo $U(0,1)$ skirstinys
 
 ```r
-curve(dunif, -1, 2)
-```
-
-![](PE2_files/figure-html/iliustracija-1.png) 
-
-```r
+# tai galima padaryti su specialia vfunkcija: curve(dunif, -1, 2)
+# arba patiems realizuotifunkcija
 x = seq(-1, 2, by=0.01)
 y = dunif(x)
 plot(x, y, type='l')
 ```
 
-![](PE2_files/figure-html/iliustracija-2.png) 
+![](PE2_files/figure-html/runif1-1.png) 
 
-
-
-```r
-x = replicate(10000, mean(runif(50)))
-hist(x)
-```
-
-![](PE2_files/figure-html/unnamed-chunk-5-1.png) 
-
+Paziurekime, kaip atrodo $F(X)$ skirstinys, kai $N=2$. Labai primenta trikampį (ištiesų taip ir turi būti).
 
 ```r
-N = 50
-x = replicate(10000, sqrt(N)*(mean(runif(N))-0.5))
-hist(x)
+sim = replicate(100000, mean(runif(2)))
+hist(sim, probability = TRUE)
+lines(density(sim), col=4, lwd=2)
+curve(dnorm(x, mean=mean(sim), sd=sd(sim)), lwd=2, col=2, add=TRUE)
 ```
 
-![](PE2_files/figure-html/unnamed-chunk-6-1.png) 
+![](PE2_files/figure-html/runif2-1.png) 
 
+Dabar pažiūrėkime, kaip atrodo $F(X)$ skirstinys, kai $N=100$ - turi daug labiau panašėti į normalujį.
+Tai užtikrina CRT.
 
+```r
+sim = replicate(100000, mean(runif(100)))
+hist(sim, probability = TRUE)
+lines(density(sim), col=4, lwd=2)
+curve(dnorm(x, mean=mean(sim), sd=sd(sim)), lwd=2, col=2, add=TRUE)
+```
+
+![](PE2_files/figure-html/runif3-1.png) 
 
 Kaip atrodo funkcijos 
 $$ g(X) = \sqrt{N} (\bar{X} - 0.5 )$$
@@ -503,47 +455,69 @@ skirstinys? Čia $\bar{X}=f(X)$, t.y. $\bar{X}$ yra aritmetinis vidurkis.
 Ar jo priklausomybė nuo $N$ tapo didesnė ar mažesnė?
 
 
-### Interaktyvus iššūkis
+```r
+N = 50
+sim = replicate(100000, sqrt(N)*(mean(runif(N))-0.5))
+hist(sim, probability = TRUE)
+lines(density(sim), col=4, lwd=2)
+curve(dnorm(x, mean=mean(sim), sd=sd(sim)), lwd=2, col=2, add=TRUE)
+```
+
+![](PE2_files/figure-html/runif4-1.png) 
+
+
+
+#### Interaktyvus iššūkis
 
 Reikia sukonstruoti MC modeliavimą, kurio pagalba galėtume įvertinti $\pi$ reikšmę, 
 naudojant tik elemntarius veiksmus.
 
+Mastymo vingiai:
+
+1. Visų prima reikia susieti $\pi$ su kažkokių dydžiu, kurį galėtume vertinti.
+Tam reikia turėti gerą intuiciją arba žinių arba patirtis. Kaip ten bebūtų viena 
+iš geriausiai žinomų tiesioginių sąsajų yra apskritimo plotas, t.y. 
+$$S = \pi r^2$$
+
+Kadangi $r$ galime pasirinkti kokį modeliuoti, tai pasirenkame $r=1$ ir gauname, kad $S=\pi$.
+Kitaip sakant $\pi$ radimas susiveda į ploto radimo uždavinį.
+
+2. Kaip galime rasti plotą? Žinomo ploto kvadrate tolygiai skleisti atsitiktinius taškus.
+Tuomet žiūrėti kiek jų yra apskritimo viduje. Šių taškų proporcija ir padeda iškaičiuoti atsakymą.
+
+![](PE2_files/figure-html/pi1-1.png) 
+
+3. Kaip reikia generuoti dvimačius taškus ir gauti atsakymą? 
+Kadangi taškai pagal abi kordinates yra nepriklausomos,
+tai generavimas yra labai paprastas - atskirai generuojma $x$ ir atskirai $y$.
+O galutinis atsakymas yra apskritimo vidinių taškų proporcija padauginti iš keturkampio ploto. Taigi
 
 ```r
-N = 1000
-x = runif(N)
-y = runif(N)
-
-# plot(x, y)
+N = 100000
+x = runif(N, -1, 1)
+y = runif(N, -1, 1)
 mean(x^2 + y^2 <= 1) * 4
 ```
 
 ```
-## [1] 3.244
+## [1] 3.14384
 ```
+
+5. Kaip patikrinti konvergavimą? Galima žiūrėti, kaip keičiasi įvertis vis daugėjant stebėjimų.  
+
+
 
 ```r
-# 
+N = 1000
+x = runif(N, -1, 1)
+y = runif(N, -1, 1)
 sim = (x^2 + y^2 <= 1) * 4
 cummean = cumsum(sim) / seq_along(sim)
-
-for(i in 1:10){
-  print (mean(sim[1:i]))
-}
+plot(cummean, type="l")
+abline(a=pi, b=0, col=3)
 ```
 
-```
-## [1] 4
-## [1] 4
-## [1] 4
-## [1] 4
-## [1] 4
-## [1] 4
-## [1] 3.428571
-## [1] 3.5
-## [1] 3.555556
-## [1] 3.2
-```
+![](PE2_files/figure-html/pi3, -1.png) 
 
 ### R galimybių demonstracija
 
@@ -584,25 +558,19 @@ t.test(x,y)
 ## 	Welch Two Sample t-test
 ## 
 ## data:  x and y
-## t = 1.9051, df = 191, p-value = 0.05827
+## t = 1.5507, df = 196.34, p-value = 0.1226
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -0.009071776  0.522088695
+##  -0.05609641  0.46893428
 ## sample estimates:
 ##   mean of x   mean of y 
-##  0.07232181 -0.18418665
+## -0.02081068 -0.22722961
 ```
 
 Kaip suprasti p-reiksmę. 
 Patikrinikime p-reikšmės prasmė meliaviavimo principu.
 Kas yra testo galia? Kaip ją galime paskaičiuoti?
 Kokį skirstinį turi p-reikšmę?
-
-
-### Bandymai užsidirbti
-
-Primityvi strategija, kuri galbūt galėtų ir suveikti...
-
 
 
 ## Task 3
