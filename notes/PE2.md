@@ -288,8 +288,8 @@ summary(x)
 ## [1] "Ar nustebsite, kad atsakymas bus 0.66?"
 ## [1] 0.66
 ## [1] "O cia galiausiai generavimo pvz:"
-##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## -4.170000 -0.665000  0.005496  0.004635  0.677400  3.516000
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -3.79200 -0.66570  0.02098  0.01948  0.69010  4.06400
 ```
 
 Pasižiurėkime grafini skirstinio vertinimą:
@@ -359,11 +359,11 @@ quantile(y, 0.7)
 
 ```
 ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## 0.009898 0.560300 0.816500 0.818800 1.070000 2.087000 
-## [1] 0.3152
-## [1] 0.2912
+## 0.005241 0.571900 0.827200 0.826500 1.076000 1.977000 
+## [1] 0.3251
+## [1] 0.3001
 ##      70% 
-## 1.016218
+## 1.023454
 ```
 
 
@@ -401,9 +401,9 @@ mean(sim)
 
 ```
 ## [1] 7
-## [1] 9
+## [1] 11
 ## [1] FALSE
-## [1] 0.2199
+## [1] 0.2216
 ```
 
 #### Pvz. 3
@@ -674,34 +674,111 @@ Key qualifications:
 * Run linear regresion and make proper conclusions form regresion output
 * Make sure regresion is correctlly applied
 * Know how to apply transformations and dummy variables
-* Run custom hipotesis tests
-* Understand ANOVA (and t-test) as special case of linear regresion.
+
+Visa reikiama medžiaga yra literatūroje - ji yra pagrindinė šios temos mokymosi medžiaga.
+
+**Akcentas nr. 1** Tiesinė lygties specifikacija ir jos matricinė forma yra ekvivalenčios formos, 
+aprašančios tą patį modelį. 
+Lygties forma yra patogesnė galvojimui, interpretavimui ir diskusijomis.
+Tuo tarpu matricinė forma daug patogesnė skaičiavimams ir techniniam argumentavimui. 
+Jūs turite mokėti suprasti abi formas.
+
+**Akcentas nr. 2** $\beta$ yra nežinomo konstanta (arba matrica). 
+Nors ji ir nežinoma, bet visgi konstanta - t.y.
+ji neturi savo skirstinio ir nuo nieko nepriklauso. Tuo tarpu $\hat{\beta}$ yra $\beta$-os 
+įvertinys, gaunama iš duomenų. Kadangi tai funkcija nuo duomenų - tai $\hat{\beta}$ yra ne konstanta, 
+o atsitiktinis dydis. Taigi $\hat{\beta}$ turi savo skirstinį, 
+kuris savo ruožtu proklauso nuo stebėjimų skaičiaus ir duomenų tarpusavio priklausomybės.
+Taigi $\beta$ ir $\hat{\beta}$ labai skirtingi objektai!
+
+**Akcentas nr. 3** Įvertinimo metudų yra daug. Pagrindiniai metodai yra šie:
+  
+  * mažiausių kvadratų; 
+  * didžiausio tikėtinumo;
+  * momentų metodas. 
+
+Klasikinės tiesinės regresijos atveju, jie visi sutampa. 
+Taigi kolkas galime į jų skirtumus perdaug nesigilinti,
+bet bendruoju atveju reikia turėti omenyje, kad egzistuoja skirtingi metodai - 
+jų metodologija ir teorija taip pat skirtingos.
 
 
+**Akcentas nr. 4** Pagrindinės OLS įverčių savybės:
+
+* Nepaslinkumas: $E\hat{\beta}=\beta$
+* suderinamumas: $lim_{n\rightarrow\infty}\hat{\beta}_n=\beta$
+
+Ar esate tikri ką šios savybės reiškia?
+
+**Akcentas nr. 5** Gauti įverčius yra lengvoji analizės dalis dalis. 
 
 
-<!--
-Beveik tvarkinga tiesinė regresija:
+```r
+library('car')
+# generuojame duomenis
+N = 100
+x = rnorm(N, mean=2)
+y = 2 -3*x^2 + rnorm(N)
 
-Išskirtys, 
-Multikolinerumas,
-Heteroskedastiskumas.
-Interpretacijos atskirimas nuo optimalios prognozes.
-overfit problema
+# tiesines regresijos iverciu radimas
+lmFit = lm(y~x)
+lmFitSumm = summary(lmFit)
+lmFitSumm
+```
 
-Kūribinga dalis:
-ištiesinimas
-plano matricos specifikavimas
+```
+## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -25.5637  -0.6705   1.1854   2.1302   4.4019 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  12.9978     0.9814   13.24   <2e-16 ***
+## x           -12.6882     0.4524  -28.05   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 3.962 on 98 degrees of freedom
+## Multiple R-squared:  0.8892,	Adjusted R-squared:  0.8881 
+## F-statistic: 786.7 on 1 and 98 DF,  p-value: < 2.2e-16
+```
 
-Prezentacija:
-Mokėti tiksliai suformuluoti modeli paprasta lygtimi ir matriciniu pavidalu.
-Gauta lygti prašyti išreikštiniu pavidalu.
-Mokėti teisinga interpretuoti
--->
+Užtikrinkite, kad suprantate visus stanartinės išvesties skaičius.
+Taip pat žinokite, kad šiuos skaičius galite tiesiogiai pasiekti ir naudoti teikste, pvz.
+šos regresios $R^2$ yra 0.8892.
 
+**Akcentas nr. 6** Turint modelį reikia užtikrinti, kad modelis geras ir nepasireiškė galimos blogybės.
+Pagrindinės problemos:
 
+* netiesiškumas
+* išskirtys (žr. `influence.measures`, `outlierTest`)
+* multikolinerumas (žr.`vif`)
+* heteroskedastiškumas (žr. `ncvTest`)
+* autokoreliacija (žr. `durbinWatsonTest`)
 
+Galingiausias pradinės analizės  įrankia - tai grafikai 
+(žr. `?plot.lm`, taip galim konstruoti ir savo grafikus, 
+pvz. labai svarubs prognozės ir faktiniu duomenų sklaidos diagrama).
+O turint įtarimų juos galima patikrinti ir formliais testais.
 
+**Akcentas nr. 7** Kitos pasabos:
+
+* Prognozės ir interpretavimo skirtumai
+* Fiktyvūs kintamieji
+* *Overfit* problema
+
+## Task 4
+
+Aplanke `task4` yra duomenų failas, kuriame rasite nekilnojamo turto (o tiksliau gyvenaųjų būtų) 
+kainas ir kaikurias jų charakteristikas.
+Jūsų užduotis atlikti išsamią tiesinę regresiją. 
+Lygtis reikalinga prekyboms agentams, 
+kad geriau suprastų kokią
+įtaką skirtingos charakteristikos daro galutinei kainai.
 
 
 References

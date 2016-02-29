@@ -619,34 +619,89 @@ Key qualifications:
 * Run linear regresion and make proper conclusions form regresion output
 * Make sure regresion is correctlly applied
 * Know how to apply transformations and dummy variables
-* Run custom hipotesis tests
-* Understand ANOVA (and t-test) as special case of linear regresion.
+
+Visa reikiama medžiaga yra literatūroje - ji yra pagrindinė šios temos mokymosi medžiaga.
+
+**Akcentas nr. 1** Tiesinė lygties specifikacija ir jos matricinė forma yra ekvivalenčios formos, 
+aprašančios tą patį modelį. 
+Lygties forma yra patogesnė galvojimui, interpretavimui ir diskusijomis.
+Tuo tarpu matricinė forma daug patogesnė skaičiavimams ir techniniam argumentavimui. 
+Jūs turite mokėti suprasti abi formas.
+
+**Akcentas nr. 2** $\beta$ yra nežinomo konstanta (arba matrica). 
+Nors ji ir nežinoma, bet visgi konstanta - t.y.
+ji neturi savo skirstinio ir nuo nieko nepriklauso. Tuo tarpu $\hat{\beta}$ yra $\beta$-os 
+įvertinys, gaunama iš duomenų. Kadangi tai funkcija nuo duomenų - tai $\hat{\beta}$ yra ne konstanta, 
+o atsitiktinis dydis. Taigi $\hat{\beta}$ turi savo skirstinį, 
+kuris savo ruožtu proklauso nuo stebėjimų skaičiaus ir duomenų tarpusavio priklausomybės.
+Taigi $\beta$ ir $\hat{\beta}$ labai skirtingi objektai!
+
+**Akcentas nr. 3** Įvertinimo metudų yra daug. Pagrindiniai metodai yra šie:
+  
+  * mažiausių kvadratų; 
+  * didžiausio tikėtinumo;
+  * momentų metodas. 
+
+Klasikinės tiesinės regresijos atveju, jie visi sutampa. 
+Taigi kolkas galime į jų skirtumus perdaug nesigilinti,
+bet bendruoju atveju reikia turėti omenyje, kad egzistuoja skirtingi metodai - 
+jų metodologija ir teorija taip pat skirtingos.
 
 
+**Akcentas nr. 4** Pagrindinės OLS įverčių savybės:
 
+* Nepaslinkumas: $E\hat{\beta}=\beta$
+* suderinamumas: $lim_{n\rightarrow\infty}\hat{\beta}_n=\beta$
 
-<!--
-Beveik tvarkinga tiesinė regresija:
+Ar esate tikri ką šios savybės reiškia?
 
-Išskirtys, 
-Multikolinerumas,
-Heteroskedastiskumas.
-Interpretacijos atskirimas nuo optimalios prognozes.
-overfit problema
+**Akcentas nr. 5** Gauti įverčius yra lengvoji analizės dalis dalis. 
 
-Kūribinga dalis:
-ištiesinimas
-plano matricos specifikavimas
+```{r linearReg}
+# library('car')
+# generuojame duomenis
+N = 100
+x = rnorm(N, mean=2)
+y = 2 -3*x^2 + rnorm(N)
 
-Prezentacija:
-Mokėti tiksliai suformuluoti modeli paprasta lygtimi ir matriciniu pavidalu.
-Gauta lygti prašyti išreikštiniu pavidalu.
-Mokėti teisinga interpretuoti
--->
+# tiesines regresijos iverciu radimas
+lmFit = lm(y~x)
+lmFitSumm = summary(lmFit)
+lmFitSumm
+```
 
+Užtikrinkite, kad suprantate visus stanartinės išvesties skaičius.
+Taip pat žinokite, kad šiuos skaičius galite tiesiogiai pasiekti ir naudoti teikste, pvz.
+šos regresios $R^2$ yra `r round(lmFitSumm$r.squared, 4)`.
 
+**Akcentas nr. 6** Turint modelį reikia užtikrinti, kad modelis geras ir nepasireiškė galimos blogybės.
+Pagrindinės problemos:
 
+* netiesiškumas
+* išskirtys (žr. `influence.measures`, `outlierTest`)
+* multikolinerumas (žr.`vif`)
+* heteroskedastiškumas (žr. `ncvTest`)
+* autokoreliacija (žr. `durbinWatsonTest`)
 
+Galingiausias pradinės analizės  įrankia - tai grafikai 
+(žr. `?plot.lm`, taip galim konstruoti ir savo grafikus, 
+pvz. labai svarubs prognozės ir faktiniu duomenų sklaidos diagrama).
+O turint įtarimų juos galima patikrinti ir formliais testais.
+
+**Akcentas nr. 7** Kitos pasabos:
+
+* Prognozės ir interpretavimo skirtumai
+* Fiktyvūs kintamieji
+* *Overfit* problema
+
+## Task 4
+
+Aplanke `task4` yra duomenų failas, kuriame rasite nekilnojamo turto (o tiksliau gyvenaųjų būtų) 
+kainas ir kaikurias jų charakteristikas.
+Jūsų užduotis atlikti išsamią tiesinę regresiją. 
+Lygtis reikalinga prekyboms agentams, 
+kad geriau suprastų kokią
+įtaką skirtingos charakteristikos daro galutinei kainai.
 
 
 References
