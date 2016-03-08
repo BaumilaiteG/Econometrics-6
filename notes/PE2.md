@@ -81,12 +81,11 @@ you are free to give your reasons and negotiate.
   * Basics (concepts, the difference with classical regression)
   * Trends (stochastic vs deterministic)
   * Spurious regression
-  * Autoregressive model
-  * Transformations  
 
 3. Intro in time series
   * Basics: stationarity, autocorrelation, AIF, PAIF
   * The decomposition of time series 
+  * Transformations    
   * Some common methods: exponential smoothing, moving average, filtering
   * Overview of more advanced methods: HP, Kalman, State Space
 
@@ -146,6 +145,40 @@ Please visit [Git home](https://git-scm.com/) and install it in your system.
 Originally Git is command line program, on the other hand, Git might be used with
 graphical interface (GUI). Visit [Gits guis page](https://git-scm.com/downloads/guis) 
 to select the one that looks best for you.
+
+## Tasks assessment guide
+
+Šioje dalyje rasite nuorodas, kaip reikia vertinti savo kolegų darbūs.
+Tam, kad vertinimai būtų suderinti, svarbu, kad jūs visi sektumėte šias nuorodas.
+Vertinimo aspektai:
+
+Baziniai aspektai: 
+
+* Teisingumas. Esminiai klausimai:
+    - Ar failas tikrai pasileidžia?
+    - Ar užduotyje pateikta medžiaga ištiesų pilnai ir teisingai išsprendžia problemą?
+
+* Programavimas:
+    - Ar kodas yra tinkamai formatuotas ir išlygiuotas?
+    - Ar kodas yra efektyvus ir logiškas?
+    - Ar kodas gali būti patobūlintas, kad geriau atitktų bendresnius atvejus?
+   
+* Aiškumas:
+    - Ar aišku kas ir kodėl daroma?
+    - Ar sudėtingose vietose yra pateikti komentarai?
+    - Ar aišku ką rodo grafikai?
+    - Ar gaunamas rezultatas yra aiškiai pateiktas ir suprantamas?
+    - Ar pateiktos nuorodos (jei tokių reikia)
+   
+Papildomi aspektai:
+
+* Išbaigtumas. Išbaigtas darbas yra toks, kurį galėtų skaityti ir suprasti šio kurso neklausę žmonės.
+  Turi būti įvadas, visi paaiškinimai, tinkamai parinkti grafikai ir t.t.
+
+* Papildomos pastangos. Ar autorius pasistengė ir pateikė gilesnę analizę, negu buvo galima tikėtis iš užduoties?
+  O gal techniškai labai gerai realizuotas - pavyzdžiui padaryta shiny aplikacija.
+  
+* Kiti niuansai. Gal darbas unikalus? Gal užduotis buvo peproporcingai sudėtinga?
 
 
 ## Task 1. Rmd in Github
@@ -288,8 +321,8 @@ summary(x)
 ## [1] "Ar nustebsite, kad atsakymas bus 0.66?"
 ## [1] 0.66
 ## [1] "O cia galiausiai generavimo pvz:"
-##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## -3.79200 -0.66570  0.02098  0.01948  0.69010  4.06400
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -3.689000 -0.673300  0.003151 -0.000728  0.668700  4.390000
 ```
 
 Pasižiurėkime grafini skirstinio vertinimą:
@@ -358,12 +391,12 @@ quantile(y, 0.7)
 ```
 
 ```
-##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## 0.005241 0.571900 0.827200 0.826500 1.076000 1.977000 
-## [1] 0.3251
-## [1] 0.3001
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.00404 0.56010 0.81770 0.81800 1.07000 1.99500 
+## [1] 0.3149
+## [1] 0.2906
 ##      70% 
-## 1.023454
+## 1.015328
 ```
 
 
@@ -401,9 +434,9 @@ mean(sim)
 
 ```
 ## [1] 7
-## [1] 11
+## [1] 12
 ## [1] FALSE
-## [1] 0.2216
+## [1] 0.2266
 ```
 
 #### Pvz. 3
@@ -623,7 +656,7 @@ Kokia tikimybė po $1000$ vienodų statymų ant vienos pasirinktos spalvos, bus 
 Raskite apytikslę $x$ reikšmę, kuriai galioja nelygybe $P(balansas<x) = 0.25$.
 
 
-**CRT.** Generuojame $m$ atsitiktinių dydžių turinčių Beta skirstinį su parametrais 
+**CRT.** Generuojame $n$ atsitiktinių dydžių turinčių Beta skirstinį su parametrais 
 $\alpha=\beta=0.5$ Iš šių atsitiktinių dydžių suskaičiuojamas aritmetinis vidurkis.
 Kaip atrodo vidurkio tankis, kai $n=100$? 
 
@@ -714,7 +747,7 @@ Ar esate tikri ką šios savybės reiškia?
 
 
 ```r
-library('car')
+# library('car')
 # generuojame duomenis
 N = 100
 x = rnorm(N, mean=2)
@@ -733,23 +766,23 @@ lmFitSumm
 ## 
 ## Residuals:
 ##      Min       1Q   Median       3Q      Max 
-## -25.5637  -0.6705   1.1854   2.1302   4.4019 
+## -16.9914  -1.5773   0.8406   3.0125   5.1476 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept)  12.9978     0.9814   13.24   <2e-16 ***
-## x           -12.6882     0.4524  -28.05   <2e-16 ***
+## (Intercept)  11.2723     0.8819   12.78   <2e-16 ***
+## x           -12.2392     0.3843  -31.85   <2e-16 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 3.962 on 98 degrees of freedom
-## Multiple R-squared:  0.8892,	Adjusted R-squared:  0.8881 
-## F-statistic: 786.7 on 1 and 98 DF,  p-value: < 2.2e-16
+## Residual standard error: 4.004 on 98 degrees of freedom
+## Multiple R-squared:  0.9119,	Adjusted R-squared:  0.911 
+## F-statistic:  1014 on 1 and 98 DF,  p-value: < 2.2e-16
 ```
 
 Užtikrinkite, kad suprantate visus stanartinės išvesties skaičius.
 Taip pat žinokite, kad šiuos skaičius galite tiesiogiai pasiekti ir naudoti teikste, pvz.
-šos regresios $R^2$ yra 0.8892.
+šos regresios $R^2$ yra 0.9119.
 
 **Akcentas nr. 6** Turint modelį reikia užtikrinti, kad modelis geras ir nepasireiškė galimos blogybės.
 Pagrindinės problemos:
@@ -780,6 +813,336 @@ Lygtis reikalinga prekyboms agentams,
 kad geriau suprastų kokią
 įtaką skirtingos charakteristikos daro galutinei kainai.
 
+Chapter 4. Laiko eilučių įvadas (tiesinės regresijos kontekste)
+================================================================
+
+Klasikinė tiesinė regresija vienmačiu atvjeu)
+$$y_i = \beta_0 + \beta_1 x_{i} + \varepsilon_i,$$
+
+kur $\beta_j,j=0,1$ yra nežinomos kostantos, o $x_{i}$ yra žinomi egzogeniniai kintamieji.
+Tariama, kad $x_{i}$ neatsitiktiniai dydžiai.
+Taip pat tariama, kad $x_{i}$ tvarka neturi prasmės.
+
+Laiko eilučių tiesinės regresijos lygtis galėtų atrodyti taip
+$$y_t = \beta_0 + \beta_1 x_{t} + \varepsilon_t,$$
+Turiu vilties, kad visi skaitytojai pastebės mažą skirtumą ir puikiai supras, kad
+šis skirtumas visiškai nekeičia esmės. 
+
+Taigi, kuo skiriasi laiko eilučių regresija? Skirtumas didžiulis!
+Skirtumas yra ne lygtyje, o prielaidose. Dabar ir tvarka svargi ir $x_t$ gali būti atsitiktiniai dydžiai.
+
+Taigi dydžiai $x_{t}$ ir $x_{t-1}$ gali būti priklausomi (dažniausiai taip ir yra). 
+Maža to dydis $x_{t-1}$ gali būti naudingas prognozuojant $y_t$.
+Taigi galima nagrinėi tokią regresiją
+$$y_t = \beta_0 + \beta_1 x_{t} + \beta_2 x_{t-1} + \varepsilon_t,$$
+Maža to, tokių vėluojančių kintamųjų skaičius gali būti kiek norimai didelis.
+
+Dar daugiau. Gali paaiškėti, kad $y_{t-1}$ taip pat naudingas prognozuojant $y_t$.
+Taigi, tokia regresija taip pat prasminga
+$$y_t = \beta_0 + \beta_1 x_{t} + \beta_2 x_{t-1} + \beta_3 y_{t-1} + \varepsilon_t,$$
+
+Taigi iš paprastos (gal net nuobodžios) regresijos, galima sukurti labai daug skirtingų variacijų.
+Šis skirtumas praturtina mūsų analizės galimybes, bet turi rimtų pasekmių, bet tam, kad jas
+suprasti, reikės naujų teorinių sąvokų.
+
+### Gerų atvejų pavyzdžiai
+
+Kaip jau minėta - regresijos lygtis laiko eilučių atveju nieko nesiskiria nuo klasikinio atveju.
+Taigi viską ką išmokote tiesinės regresijos atveju, galima iškarto naudoti - tereikia mokėti pastumti eilutes.
+Šiam tikslui yra paketų (pvz. `dynlm`), bet galima apsieiti ir be jų.
+
+
+```r
+# postumio funkcija
+L <- function(x, lag=1){
+  c(rep(NA,lag) , x[1:(length(x)-lag)])  
+}
+x = 1:10
+x
+L(x, 2)
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+##  [1] NA NA  1  2  3  4  5  6  7  8
+```
+
+**Pvz.1** Tiesinės regresijos pvz, kuomet $y$ priklauso nuo pavėlintų savo reikšmių.
+
+```r
+eps = rnorm(1000)
+y = filter(eps, filter=0.666, method = "recursive")
+```
+
+Pasižiūrėkim kaip atrodo $y$.
+
+```r
+plot(y, type="l", xlab="t", ylab="y")
+```
+
+![](PE2_files/figure-html/lagInRegresionY2-1.png) 
+
+Nelabai aiški priklausomybė, ar ne? Bet norint aiškiau tai parodyti, galime išbrėžti kaip atrodo 
+priklausomybė tarp $y_t$ ir $y_{t-1}$. Pasižiūrėkime:
+
+```r
+plot(L(y), y, xlab="t(t-1)", ylab="y")
+```
+
+![](PE2_files/figure-html/lagInRegresionY3-1.png) 
+
+Taip pat galime paskaičiuoti ir koreliaciją
+
+```r
+cor(L(y), y, use="pairwise.complete.obs")
+```
+
+```
+## [1] 0.6133633
+```
+
+Galiausiai galime gauti įverčius
+
+```r
+summary(lm(y~ I(L(y))))
+```
+
+```
+## 
+## Call:
+## lm(formula = y ~ I(L(y)))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.4270 -0.6976 -0.0051  0.6917  2.9487 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.02224    0.03238   0.687    0.492    
+## I(L(y))      0.61422    0.02505  24.522   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.022 on 997 degrees of freedom
+##   (1 observation deleted due to missingness)
+## Multiple R-squared:  0.3762,	Adjusted R-squared:  0.3756 
+## F-statistic: 601.3 on 1 and 997 DF,  p-value: < 2.2e-16
+```
+
+**Pvz.2** Tiesinės regresijos pvz, kuomet $x$ yra pavėlintas.
+
+```r
+x = rnorm(1000)
+y = 1 + 0.7*x + 0.3*L(x) + rnorm(1000)
+summary(lm(y~x + I(L(x))))
+```
+
+```
+## 
+## Call:
+## lm(formula = y ~ x + I(L(x)))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -4.1013 -0.6807  0.0431  0.7245  2.6638 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  0.96783    0.03168  30.551   <2e-16 ***
+## x            0.73289    0.02978  24.607   <2e-16 ***
+## I(L(x))      0.26983    0.02984   9.042   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.001 on 996 degrees of freedom
+##   (1 observation deleted due to missingness)
+## Multiple R-squared:  0.4075,	Adjusted R-squared:  0.4063 
+## F-statistic: 342.5 on 2 and 996 DF,  p-value: < 2.2e-16
+```
+
+**Pvz.3** Tiesinės regresijos pvz, kuomet $y$ vėlinys naudojamas kaip regresorius.
+
+```r
+x = rnorm(1000)
+xInfl = 3*x  + rnorm(1000)
+y = filter(xInfl, filter=0.666, method = "recursive")
+summary(lm(y ~ x + I(L(y))))
+```
+
+```
+## 
+## Call:
+## lm(formula = y ~ x + I(L(y)))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -2.8525 -0.6713 -0.0064  0.6261  3.2241 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 0.025063   0.031099   0.806     0.42    
+## x           3.026315   0.031927  94.788   <2e-16 ***
+## I(L(y))     0.664998   0.007407  89.777   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 0.9826 on 996 degrees of freedom
+##   (1 observation deleted due to missingness)
+## Multiple R-squared:  0.9454,	Adjusted R-squared:  0.9453 
+## F-statistic:  8623 on 2 and 996 DF,  p-value: < 2.2e-16
+```
+
+#### Problematika
+
+Šiame skyriuje praktiškai pademosntruosime, kuomet iškyla problemos. Pvz, kokių koeficientų galima tikėtis
+tiesinėje regresijoje 
+$$y_t = \beta_0 + \beta_1 x_t + \varepsilon_t,$$
+kuomet $x$ ir $y$ yra sugeneruoti pagal kodą, kuris pateiktas žemiau.
+
+```r
+x = rnorm(100, mean = 1)
+y = rnorm(100, mean = 2)
+```
+
+Turbut lengva atspėti
+
+```r
+library(knitr)
+out = lm(y~x)
+kable(summary(out)$coef, digits=2)
+```
+
+               Estimate   Std. Error   t value   Pr(>|t|)
+------------  ---------  -----------  --------  ---------
+(Intercept)        2.17         0.13     17.00       0.00
+x                 -0.12         0.09     -1.33       0.19
+
+
+O kas jeigu šiek tiek pakeisime $x$ ir $y$ generavimą?
+
+```r
+x = cumsum(rnorm(100, mean = 1))
+y = cumsum(rnorm(100, mean = 2))
+kable(summary(lm(y~x))$coef, digits=2)
+```
+
+               Estimate   Std. Error   t value   Pr(>|t|)
+------------  ---------  -----------  --------  ---------
+(Intercept)       14.97         1.37     10.91          0
+x                  2.01         0.03     72.95          0
+
+Kodėl? ...
+
+
+>  Apibendrinimas: TiesiogiaitTiesinę regresiją laiko eilutėms prasminga naudoti tik dviems atvejais:
+>
+>  * Laiko eilutės yra stacionarios. 
+>  * Laiko eilučių procesai yra kointegruoti. 
+
+Suprantu, kad nei vienas terminas dar nėra apibrėžtas - tam reikės bent kelių paskaitų. 
+Svarbu, kad prisimintumėte, kad tiesinė regresija su laiko eilutėmis yra pilnai suderinti, bet rekia
+rūpintis papildomomis savybėmis. Jei laiko eilutės nėra nei stacionarios, nei kointegruotos, tai reikia 
+kažkaip jas transformuoti, kad atsirastų stacionarumas. 
+
+### Trendai
+
+### Klaidinga regresija
+
+### Sezoniškumas
+
+### Greiti sprendimai
+
+Ką daryti, jei yra priežasčių nerimauti, kad turimom laiko eilutėm tiesiogiai taikyti regresija
+nėra korektiška? 
+Vis dar nesigilinant į laiko eilučių teoriją, galima pateikti du dažniausiai papilitusius 
+metodus :
+
+ * Trendų ar sezoniškumo komponentės įtraukimas į regresijos lygtį;
+ * Skirtumų naudojimas.
+ 
+Šie metodai neužtikrina sekmės, bet stipriai sumažina akivaidžių klaidų tikimybę.
+Pabandykime sugeneruoti kelias iliustracijas.
+
+**Sezoniškumas**
+
+**Deterministinis trendas**
+
+**Atsitikrinis klaidžiojimas**
+
+
+Tam, kad išsamiai atsakyti ką ir kada taikyti jau reikia gilintis giliau. Apie tai kitame skyriuje. 
+
+Chapter 5. Laiko eilučių įvadas
+================================================================
+
+
+### Sąvokos
+
+Čia ne visos sąvokos, bet tikrai tos, kurias būtina žinoti ir prisiminti (bent jau iki studijų baigimo).
+
+**Kovariacinė funkcija.** Atsitiktinio proceso ${X_t , t \in T}$, su visais $t \in T$
+tenkinančio sąlygą $DX_t < \infty$ kovariacinė funkcija apibrėžiama lygybe
+$$r(s, t) = Cov(X s , X_t ) = E(X_s − EX_s )(X_t − EX_t ),$$
+kai $s, t \in T$.
+
+**Stacionarumas (plačiąja prasme).** Seka ${X_t ,t \in Z}$  vadinama stacionaria, (plačiąja prasme) jeigu:
+
+1) $\forall t \in Z: E|X_t |^2 < \infty$,
+2) $\forall t \in Z: EX_t = EX_0$ ,
+3) $r(s, t) = r(s + h, t + h)$ su visais $s, t, h \in Z$.
+
+**Stacionarumas (siaurąja prasme).**
+Seka ${X_t , t \in Z}$ vadinama stacionariąja siaurąja (arba
+griežtąja) prasme, jeigu su visais $k \in N  t_1, t_2 , ..., t_k$ ir $h \in Z$ vektorių
+$(X_{t_1} , ..., X_{t_k} )$ ir $(X_{t_1 + h} , ..., X_{t_k +h} )$ pasiskirstymai sutampa.
+
+Nesunku matyti, jeigu seka ${X_t}$ yra stacionari siaurąja prasme ir
+$E|X_t|^2 < \infty$ , tai ji yra stacionari ir plačiąja prasme. Atvirkščias gi teiginys
+nėra teisingas.
+
+Kadangi stacionariai sekai tesinga $r(s, t) = r(s − t, 0)$ su visais $s, t \in Z$,
+tai patogiau kovariacinę funkciją traktuoti kaip vieno argumento funkciją ir
+rašyti tiesiog $r(s) = r(s, 0)$ visiems $s \in Z$.
+Stacionarios sekos koreliacinė funkcija apibrėžiama lygybe
+$$\rho(h) = r(h)/r(0)$$
+su $h \in Z$.
+
+**Postūmio operatorius.** Operatorius $B$ yra postūmio operatorius, t.y. galioja lygybė
+$$B X_t = X_{t−1}.$$ 
+
+Šį operatorių galime taikyti kelis kartus ,t.y. $B^2 X_t = B(B X_t)=B X_{t-1} = X_{t-2}$.
+Taigi bendruoju atveju galioja lygybė
+$$B^j X_t = X_{t−j},$$ 
+kur  $j \in Z$.
+
+**Skirtumo operatorius.** Operatorius $\nabla$ yra skirtuminis operatorius, t.y. galioja lygybė
+$$\nabla X_t = X_{t} - X_{t-1} = (1-B)X_t.$$ 
+
+Jį taip pat galima taikytis kelis kartus, t.y. 
+$$\nabla^2 X_t = \nabla \nabla  X_t = \nabla(X_{t} - X_{t-1}) = \nabla X_{t} - \nabla X_{t-1} = 
+(X_{t} - X_{t-1}) - (X_{t-1} - X_{t-2}) =  X_{t} - 2 X_{t-1} + X_{t-2}.$$ 
+
+Bendruoju atvjeu galioja lygybė
+$$\nabla^j X_t = (1-B)^j X_t,$$
+kur $j \in N$. 
+
+Taip pat galima apibendrinti skirtumo operaturių, kuomet skirtumas skiačiuojamas per $j$ žingsnių, t.y.
+$$\nabla_j = X_{t} - X_{t-j}.$$
+
+**Dalinė autokoreliacija.** Tegul ${X_t, t \in Z}$ yra stacionari seka. 
+Dalinė autokovariacia žymi koreliaciją tarp $X_t$ ir $X_{t-k}$ yra koreliacija tarp kintamųjų,  
+kuomet eliminuojama tarpinių narių $X_{t-1}, ..., X_{t-k+1}$ įtaka.
+Išsamesnis paaiškinimas yra [@Leipus2010a, ch. 7.3] (o šiame kurse kolkas užteks ir intuityvaus suvokimo.)
+
+
+**Baltas triukšmas.** Seka ${Z_t}$ vadinama balto triukšmo seka su vidurkiu $0$
+ir dispersija $\sigma^2$ , jeigu $EZ_t = 0$, $r(0)=\sigma^2$ ir $r(h)=0$, kai $h>0$.
+Žymėsime  $t \sim BT (0, \sigma^2 )$.
+
+
+
+
+
 
 References
 ============================================================
@@ -801,9 +1164,15 @@ references:
   issued:
     year: 2013
 
+- id: Leipus2010a
+  title: Finansin ̇es laiko eilut ̇es
+  author:
+  - family: Leipus
+    given: Remigijus
+  issued:
+    year: 2010
 
-
-
+ 
 - id: fenner2012a
   title: One-click science marketing
   author:

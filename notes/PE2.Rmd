@@ -87,12 +87,11 @@ you are free to give your reasons and negotiate.
   * Basics (concepts, the difference with classical regression)
   * Trends (stochastic vs deterministic)
   * Spurious regression
-  * Autoregressive model
-  * Transformations  
 
 3. Intro in time series
   * Basics: stationarity, autocorrelation, AIF, PAIF
   * The decomposition of time series 
+  * Transformations    
   * Some common methods: exponential smoothing, moving average, filtering
   * Overview of more advanced methods: HP, Kalman, State Space
 
@@ -152,6 +151,40 @@ Please visit [Git home](https://git-scm.com/) and install it in your system.
 Originally Git is command line program, on the other hand, Git might be used with
 graphical interface (GUI). Visit [Gits guis page](https://git-scm.com/downloads/guis) 
 to select the one that looks best for you.
+
+## Tasks assessment guide
+
+Šioje dalyje rasite nuorodas, kaip reikia vertinti savo kolegų darbūs.
+Tam, kad vertinimai būtų suderinti, svarbu, kad jūs visi sektumėte šias nuorodas.
+Vertinimo aspektai:
+
+Baziniai aspektai: 
+
+* Teisingumas. Esminiai klausimai:
+    - Ar failas tikrai pasileidžia?
+    - Ar užduotyje pateikta medžiaga ištiesų pilnai ir teisingai išsprendžia problemą?
+
+* Programavimas:
+    - Ar kodas yra tinkamai formatuotas ir išlygiuotas?
+    - Ar kodas yra efektyvus ir logiškas?
+    - Ar kodas gali būti patobūlintas, kad geriau atitktų bendresnius atvejus?
+   
+* Aiškumas:
+    - Ar aišku kas ir kodėl daroma?
+    - Ar sudėtingose vietose yra pateikti komentarai?
+    - Ar aišku ką rodo grafikai?
+    - Ar gaunamas rezultatas yra aiškiai pateiktas ir suprantamas?
+    - Ar pateiktos nuorodos (jei tokių reikia)
+   
+Papildomi aspektai:
+
+* Išbaigtumas. Išbaigtas darbas yra toks, kurį galėtų skaityti ir suprasti šio kurso neklausę žmonės.
+  Turi būti įvadas, visi paaiškinimai, tinkamai parinkti grafikai ir t.t.
+
+* Papildomos pastangos. Ar autorius pasistengė ir pateikė gilesnę analizę, negu buvo galima tikėtis iš užduoties?
+  O gal techniškai labai gerai realizuotas - pavyzdžiui padaryta shiny aplikacija.
+  
+* Kiti niuansai. Gal darbas unikalus? Gal užduotis buvo peproporcingai sudėtinga?
 
 
 ## Task 1. Rmd in Github
@@ -568,7 +601,7 @@ Kokia tikimybė po $1000$ vienodų statymų ant vienos pasirinktos spalvos, bus 
 Raskite apytikslę $x$ reikšmę, kuriai galioja nelygybe $P(balansas<x) = 0.25$.
 
 
-**CRT.** Generuojame $m$ atsitiktinių dydžių turinčių Beta skirstinį su parametrais 
+**CRT.** Generuojame $n$ atsitiktinių dydžių turinčių Beta skirstinį su parametrais 
 $\alpha=\beta=0.5$ Iš šių atsitiktinių dydžių suskaičiuojamas aritmetinis vidurkis.
 Kaip atrodo vidurkio tankis, kai $n=100$? 
 
@@ -703,6 +736,261 @@ Lygtis reikalinga prekyboms agentams,
 kad geriau suprastų kokią
 įtaką skirtingos charakteristikos daro galutinei kainai.
 
+Chapter 4. Laiko eilučių įvadas (tiesinės regresijos kontekste)
+================================================================
+
+Klasikinė tiesinė regresija vienmačiu atvjeu)
+$$y_i = \beta_0 + \beta_1 x_{i} + \varepsilon_i,$$
+
+kur $\beta_j,j=0,1$ yra nežinomos kostantos, o $x_{i}$ yra žinomi egzogeniniai kintamieji.
+Tariama, kad $x_{i}$ neatsitiktiniai dydžiai.
+Taip pat tariama, kad $x_{i}$ tvarka neturi prasmės.
+
+Laiko eilučių tiesinės regresijos lygtis galėtų atrodyti taip
+$$y_t = \beta_0 + \beta_1 x_{t} + \varepsilon_t,$$
+Turiu vilties, kad visi skaitytojai pastebės mažą skirtumą ir puikiai supras, kad
+šis skirtumas visiškai nekeičia esmės. 
+
+Taigi, kuo skiriasi laiko eilučių regresija? Skirtumas didžiulis!
+Skirtumas yra ne lygtyje, o prielaidose. Dabar ir tvarka svargi ir $x_t$ gali būti atsitiktiniai dydžiai.
+
+Taigi dydžiai $x_{t}$ ir $x_{t-1}$ gali būti priklausomi (dažniausiai taip ir yra). 
+Maža to dydis $x_{t-1}$ gali būti naudingas prognozuojant $y_t$.
+Taigi galima nagrinėi tokią regresiją
+$$y_t = \beta_0 + \beta_1 x_{t} + \beta_2 x_{t-1} + \varepsilon_t,$$
+Maža to, tokių vėluojančių kintamųjų skaičius gali būti kiek norimai didelis.
+
+Dar daugiau. Gali paaiškėti, kad $y_{t-1}$ taip pat naudingas prognozuojant $y_t$.
+Taigi, tokia regresija taip pat prasminga
+$$y_t = \beta_0 + \beta_1 x_{t} + \beta_2 x_{t-1} + \beta_3 y_{t-1} + \varepsilon_t,$$
+
+Taigi iš paprastos (gal net nuobodžios) regresijos, galima sukurti labai daug skirtingų variacijų.
+Šis skirtumas praturtina mūsų analizės galimybes, bet turi rimtų pasekmių, bet tam, kad jas
+suprasti, reikės naujų teorinių sąvokų.
+
+### Gerų atvejų pavyzdžiai
+
+Kaip jau minėta - regresijos lygtis laiko eilučių atveju nieko nesiskiria nuo klasikinio atveju.
+Taigi viską ką išmokote tiesinės regresijos atveju, galima iškarto naudoti - tereikia mokėti pastumti eilutes.
+Šiam tikslui yra paketų (pvz. `dynlm`), bet galima apsieiti ir be jų.
+
+```{r lagFunction, results='hold'}
+# postumio funkcija
+L <- function(x, lag=1){
+  c(rep(NA,lag) , x[1:(length(x)-lag)])  
+}
+x = 1:10
+x
+L(x, 2)
+```
+
+**Pvz.1** Tiesinės regresijos pvz, kuomet $y$ priklauso nuo pavėlintų savo reikšmių.
+```{r lagInRegresionY1}
+eps = rnorm(1000)
+y = filter(eps, filter=0.666, method = "recursive")
+```
+
+Pasižiūrėkim kaip atrodo $y$.
+```{r lagInRegresionY2}
+plot(y, type="l", xlab="t", ylab="y")
+```
+
+Nelabai aiški priklausomybė, ar ne? Bet norint aiškiau tai parodyti, galime išbrėžti kaip atrodo 
+priklausomybė tarp $y_t$ ir $y_{t-1}$. Pasižiūrėkime:
+```{r lagInRegresionY3}
+plot(L(y), y, xlab="t(t-1)", ylab="y")
+```
+
+Taip pat galime paskaičiuoti ir koreliaciją
+```{r lagInRegresionY4}
+cor(L(y), y, use="pairwise.complete.obs")
+```
+
+Galiausiai galime gauti įverčius
+```{r lagInRegresionY5}
+summary(lm(y~ I(L(y))))
+```
+
+**Pvz.2** Tiesinės regresijos pvz, kuomet $x$ yra pavėlintas.
+```{r lagInRegresion1}
+x = rnorm(1000)
+y = 1 + 0.7*x + 0.3*L(x) + rnorm(1000)
+summary(lm(y~x + I(L(x))))
+```
+
+**Pvz.3** Tiesinės regresijos pvz, kuomet $y$ vėlinys naudojamas kaip regresorius.
+```{r lagInRegresion2}
+x = rnorm(1000)
+xInfl = 3*x  + rnorm(1000)
+y = filter(xInfl, filter=0.666, method = "recursive")
+summary(lm(y ~ x + I(L(y))))
+```
+
+#### Problematika
+
+Šiame skyriuje praktiškai pademosntruosime, kuomet iškyla problemos. Pvz, kokių koeficientų galima tikėtis
+tiesinėje regresijoje 
+$$y_t = \beta_0 + \beta_1 x_t + \varepsilon_t,$$
+kuomet $x$ ir $y$ yra sugeneruoti pagal kodą, kuris pateiktas žemiau.
+```{r crossSection1}
+x = rnorm(100, mean = 1)
+y = rnorm(100, mean = 2)
+```
+
+Turbut lengva atspėti
+```{r crossSection2}
+library(knitr)
+out = lm(y~x)
+kable(summary(out)$coef, digits=2)
+```
+
+
+O kas jeigu šiek tiek pakeisime $x$ ir $y$ generavimą?
+```{r crossSection3}
+x = cumsum(rnorm(100, mean = 1))
+y = cumsum(rnorm(100, mean = 2))
+kable(summary(lm(y~x))$coef, digits=2)
+```
+
+Kodėl? ...
+
+
+>  Apibendrinimas: TiesiogiaitTiesinę regresiją laiko eilutėms prasminga naudoti tik dviems atvejais:
+>
+>  * Laiko eilutės yra stacionarios. 
+>  * Laiko eilučių procesai yra kointegruoti. 
+
+Suprantu, kad nei vienas terminas dar nėra apibrėžtas - tam reikės bent kelių paskaitų. 
+Svarbu, kad prisimintumėte, kad tiesinė regresija su laiko eilutėmis yra pilnai suderinti, bet rekia
+rūpintis papildomomis savybėmis. Jei laiko eilutės nėra nei stacionarios, nei kointegruotos, tai reikia 
+kažkaip jas transformuoti, kad atsirastų stacionarumas. 
+
+### Trendai
+
+### Klaidinga regresija
+
+### Sezoniškumas
+
+### Greiti sprendimai
+
+Ką daryti, jei yra priežasčių nerimauti?
+Vis dar nesigilinant į laiko eilučių teoriją, galima pateikti du dažniausiai papilitusius 
+metodus :
+
+ * Trendų ar sezoniškumo komponentės įtraukimas į regresijos lygtį;
+ * Skirtumų naudojimas.
+ 
+Šie metodai neužtikrina sekmės, bet stipriai sumažina akivaidžių klaidų tikimybę.
+Pabandykime sugeneruoti kelias iliustracijas.
+
+**Sezoniškumas**
+
+**Deterministinis trendas**
+
+**Atsitikrinis klaidžiojimas**
+
+
+Tam, kad išsamiai atsakyti ką ir kada taikyti jau reikia gilintis giliau. Apie tai kitame skyriuje. 
+
+## Užduotys
+
+Šios savaitės pirmoji užduotis yra sutvarkyti ankstenes užduotis, taip kad jos atitiktų
+naujai iškeltus reikalavimus.
+
+**Pinigų paklausa.** Šioje užduotyje reikia atlikti tiesinę regresiją.
+Pakete `dynlm` yra duomenų masyvas `M1Germany` - ten yra ir jo aprašymas.
+Iš turimų duomenų sudarykite ir įvertinkite tiesinę regresiją, kurios endoneninis kintamasis yra `logm1`.
+Lygtis būtų naudojama prognozuoti pinigų kiekį artimiausiam laikotarpiui į prieki remiantis dabartine situacija.
+Taigi prognozės sudarymui lygtis gali naudoti tik tuos duomenis, kurie būtų žinomi prognozavimo momentu.
+
+**Iššūkis1.** Google organziuoja progromavimo varžybas. 
+Dalyvauti gali visi norintys ir naudoti gali viską ką sugeba. 
+[Tikiuosi, kad ką nors sudomins](https://code.google.com/codejam/). 
+Noriu pasiūlyti iššukį iš vienos užduoties: 
+[Rope Intranet.](https://code.google.com/codejam/contest/619102/dashboard)
+Jeigu padarysite R funkciją, kuri gauna teisingą atsakymą (dideliam masyvui) - 
+tai gausite papildomų taškų. Maža to, jei jūsų programa savo greičiu aplenks mano parašytą funkciją, tai
+pipildomi taškai taps auksiniais taškais. 
+Užduotį reikia atlikti individualiai ir savarankiškai, taip pat reikia mokėti ją paaiškinti.
+
+
+
+
+
+
+
+
+Chapter 5. Laiko eilučių įvadas
+================================================================
+
+
+### Sąvokos
+
+Čia ne visos sąvokos, bet tikrai tos, kurias būtina žinoti ir prisiminti (bent jau iki studijų baigimo).
+
+**Kovariacinė funkcija.** Atsitiktinio proceso ${X_t , t \in T}$, su visais $t \in T$
+tenkinančio sąlygą $DX_t < \infty$ kovariacinė funkcija apibrėžiama lygybe
+$$r(s, t) = Cov(X s , X_t ) = E(X_s − EX_s )(X_t − EX_t ),$$
+kai $s, t \in T$.
+
+**Stacionarumas (plačiąja prasme).** Seka ${X_t ,t \in Z}$  vadinama stacionaria, (plačiąja prasme) jeigu:
+
+1) $\forall t \in Z: E|X_t |^2 < \infty$,
+2) $\forall t \in Z: EX_t = EX_0$ ,
+3) $r(s, t) = r(s + h, t + h)$ su visais $s, t, h \in Z$.
+
+**Stacionarumas (siaurąja prasme).**
+Seka ${X_t , t \in Z}$ vadinama stacionariąja siaurąja (arba
+griežtąja) prasme, jeigu su visais $k \in N  t_1, t_2 , ..., t_k$ ir $h \in Z$ vektorių
+$(X_{t_1} , ..., X_{t_k} )$ ir $(X_{t_1 + h} , ..., X_{t_k +h} )$ pasiskirstymai sutampa.
+
+Nesunku matyti, jeigu seka ${X_t}$ yra stacionari siaurąja prasme ir
+$E|X_t|^2 < \infty$ , tai ji yra stacionari ir plačiąja prasme. Atvirkščias gi teiginys
+nėra teisingas.
+
+Kadangi stacionariai sekai tesinga $r(s, t) = r(s − t, 0)$ su visais $s, t \in Z$,
+tai patogiau kovariacinę funkciją traktuoti kaip vieno argumento funkciją ir
+rašyti tiesiog $r(s) = r(s, 0)$ visiems $s \in Z$.
+Stacionarios sekos koreliacinė funkcija apibrėžiama lygybe
+$$\rho(h) = r(h)/r(0)$$
+su $h \in Z$.
+
+**Postūmio operatorius.** Operatorius $B$ yra postūmio operatorius, t.y. galioja lygybė
+$$B X_t = X_{t−1}.$$ 
+
+Šį operatorių galime taikyti kelis kartus ,t.y. $B^2 X_t = B(B X_t)=B X_{t-1} = X_{t-2}$.
+Taigi bendruoju atveju galioja lygybė
+$$B^j X_t = X_{t−j},$$ 
+kur  $j \in Z$.
+
+**Skirtumo operatorius.** Operatorius $\nabla$ yra skirtuminis operatorius, t.y. galioja lygybė
+$$\nabla X_t = X_{t} - X_{t-1} = (1-B)X_t.$$ 
+
+Jį taip pat galima taikytis kelis kartus, t.y. 
+$$\nabla^2 X_t = \nabla \nabla  X_t = \nabla(X_{t} - X_{t-1}) = \nabla X_{t} - \nabla X_{t-1} = 
+(X_{t} - X_{t-1}) - (X_{t-1} - X_{t-2}) =  X_{t} - 2 X_{t-1} + X_{t-2}.$$ 
+
+Bendruoju atvjeu galioja lygybė
+$$\nabla^j X_t = (1-B)^j X_t,$$
+kur $j \in N$. 
+
+Taip pat galima apibendrinti skirtumo operaturių, kuomet skirtumas skiačiuojamas per $j$ žingsnių, t.y.
+$$\nabla_j = X_{t} - X_{t-j}.$$
+
+**Dalinė autokoreliacija.** Tegul ${X_t, t \in Z}$ yra stacionari seka. 
+Dalinė autokovariacia žymi koreliaciją tarp $X_t$ ir $X_{t-k}$ yra koreliacija tarp kintamųjų,  
+kuomet eliminuojama tarpinių narių $X_{t-1}, ..., X_{t-k+1}$ įtaka.
+Išsamesnis paaiškinimas yra [@Leipus2010a, ch. 7.3] (o šiame kurse kolkas užteks ir intuityvaus suvokimo.)
+
+
+**Baltas triukšmas.** Seka ${Z_t}$ vadinama balto triukšmo seka su vidurkiu $0$
+ir dispersija $\sigma^2$ , jeigu $EZ_t = 0$, $r(0)=\sigma^2$ ir $r(h)=0$, kai $h>0$.
+Žymėsime  $t \sim BT (0, \sigma^2 )$.
+
+
+
+
+
 
 References
 ============================================================
@@ -724,9 +1012,15 @@ references:
   issued:
     year: 2013
 
+- id: Leipus2010a
+  title: Finansin ̇es laiko eilut ̇es
+  author:
+  - family: Leipus
+    given: Remigijus
+  issued:
+    year: 2010
 
-
-
+ 
 - id: fenner2012a
   title: One-click science marketing
   author:
