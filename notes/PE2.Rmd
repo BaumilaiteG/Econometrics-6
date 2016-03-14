@@ -883,13 +883,6 @@ metodus :
 Šie metodai neužtikrina sekmės, bet stipriai sumažina akivaidžių klaidų tikimybę.
 Pabandykime sugeneruoti kelias iliustracijas.
 
-**Sezoniškumas**
-
-**Deterministinis trendas**
-
-**Atsitikrinis klaidžiojimas**
-
-
 Tam, kad išsamiai atsakyti ką ir kada taikyti jau reikia gilintis giliau. Apie tai kitame skyriuje. 
 
 ## Užduotys
@@ -897,11 +890,15 @@ Tam, kad išsamiai atsakyti ką ir kada taikyti jau reikia gilintis giliau. Apie
 Šios savaitės pirmoji užduotis yra sutvarkyti ankstenes užduotis, taip kad jos atitiktų
 naujai iškeltus reikalavimus.
 
+### Task 5
+
 **Pinigų paklausa.** Šioje užduotyje reikia atlikti tiesinę regresiją.
 Pakete `dynlm` yra duomenų masyvas `M1Germany` - ten yra ir jo aprašymas.
 Iš turimų duomenų sudarykite ir įvertinkite tiesinę regresiją, kurios endoneninis kintamasis yra `logm1`.
 Lygtis būtų naudojama prognozuoti pinigų kiekį artimiausiam laikotarpiui į prieki remiantis dabartine situacija.
 Taigi prognozės sudarymui lygtis gali naudoti tik tuos duomenis, kurie būtų žinomi prognozavimo momentu.
+
+### Challange 1
 
 **Iššūkis1.** Google organziuoja progromavimo varžybas. 
 Dalyvauti gali visi norintys ir naudoti gali viską ką sugeba. 
@@ -915,13 +912,19 @@ Užduotį reikia atlikti individualiai ir savarankiškai, taip pat reikia mokėt
 
 
 
-
-
-
-
-
 Chapter 5. Laiko eilučių įvadas
 ================================================================
+
+Literatūra: Laiko eilučių pagrindinis šaltinis [@Hyndman2014a] - taip išliks visą šį kursą.
+Papildomas šaltinis [@Leipus2010a] - tai daug labiau teoretinis šaltinis, norint griežtai suprasti sąvokas.
+Kiti šaltiniai taip pat geri ir naudingi - bet jie pasidaro naudingesni, kai jums bus aiški esmė.
+
+Ankstesnių paskaitų akcentai:
+
+* Griežtas namų darbų terminas: 2016-03-22 23:59
+* Laiškų rašymo niuansai 
+* Iššūkis1
+* Tiesinės regresijos komplikacijų pakartojimas
 
 
 ### Sąvokos
@@ -942,7 +945,7 @@ kai $s, t \in T$.
 **Stacionarumas (siaurąja prasme).**
 Seka ${X_t , t \in Z}$ vadinama stacionariąja siaurąja (arba
 griežtąja) prasme, jeigu su visais $k \in N  t_1, t_2 , ..., t_k$ ir $h \in Z$ vektorių
-$(X_{t_1} , ..., X_{t_k} )$ ir $(X_{t_1 + h} , ..., X_{t_k +h} )$ pasiskirstymai sutampa.
+$(X_{t_1} , ..., X_{t_k} )$ ir $(X_{t_1 + h} , ..., X_{t_k+h})$ pasiskirstymai sutampa.
 
 Nesunku matyti, jeigu seka ${X_t}$ yra stacionari siaurąja prasme ir
 $E|X_t|^2 < \infty$ , tai ji yra stacionari ir plačiąja prasme. Atvirkščias gi teiginys
@@ -987,9 +990,23 @@ Išsamesnis paaiškinimas yra [@Leipus2010a, ch. 7.3] (o šiame kurse kolkas už
 ir dispersija $\sigma^2$ , jeigu $EZ_t = 0$, $r(0)=\sigma^2$ ir $r(h)=0$, kai $h>0$.
 Žymėsime  $t \sim BT (0, \sigma^2 )$.
 
+## Užduotys
+
+### Task 6
+
+Šaltinyje [@Hyndman2014a, ch. 1. Introduction to forecasting, Lab Session 1] Yra dvi užduotys.
+Jums reikia padaryti vieną (galite laisvai pasirinkti kurią). 
+Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. 
+Šalia grafikų būtinai pateikite savo komentarus.
 
 
 
+### Task 7
+
+Šaltinyje [@Hyndman2014a, ch. 2. The forecaster’s toolbox, Lab Session 2] Yra penkios užduotys.
+Jums reikia padaryti tris (galite laisvai pasirinkti kurias). 
+Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. 
+Šalia grafikų būtinai pateikite savo komentarus.
 
 
 References
@@ -1013,12 +1030,21 @@ references:
     year: 2013
 
 - id: Leipus2010a
-  title: Finansin ̇es laiko eilut ̇es
+  title: Finansinės laiko eilutės
   author:
   - family: Leipus
     given: Remigijus
   issued:
     year: 2010
+
+- id: Hyndman2014a
+  title: Forecasting: Principles & Practice
+  author:
+  - family: Hyndman
+    given: Rob J 
+  issued:
+    year: 2014
+
 
  
 - id: fenner2012a

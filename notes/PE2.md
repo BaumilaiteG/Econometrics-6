@@ -322,7 +322,7 @@ summary(x)
 ## [1] 0.66
 ## [1] "O cia galiausiai generavimo pvz:"
 ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## -3.689000 -0.673300  0.003151 -0.000728  0.668700  4.390000
+## -3.845000 -0.677900 -0.002790 -0.008812  0.680500  3.538000
 ```
 
 Pasižiurėkime grafini skirstinio vertinimą:
@@ -392,11 +392,11 @@ quantile(y, 0.7)
 
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00404 0.56010 0.81770 0.81800 1.07000 1.99500 
-## [1] 0.3149
-## [1] 0.2906
+##  0.0113  0.5667  0.8241  0.8277  1.0800  1.9810 
+## [1] 0.3265
+## [1] 0.2994
 ##      70% 
-## 1.015328
+## 1.027598
 ```
 
 
@@ -433,10 +433,10 @@ mean(sim)
 ```
 
 ```
-## [1] 7
-## [1] 12
+## [1] 8
+## [1] 5
 ## [1] FALSE
-## [1] 0.2266
+## [1] 0.2182
 ```
 
 #### Pvz. 3
@@ -1052,8 +1052,7 @@ kažkaip jas transformuoti, kad atsirastų stacionarumas.
 
 ### Greiti sprendimai
 
-Ką daryti, jei yra priežasčių nerimauti, kad turimom laiko eilutėm tiesiogiai taikyti regresija
-nėra korektiška? 
+Ką daryti, jei yra priežasčių nerimauti?
 Vis dar nesigilinant į laiko eilučių teoriją, galima pateikti du dažniausiai papilitusius 
 metodus :
 
@@ -1063,17 +1062,48 @@ metodus :
 Šie metodai neužtikrina sekmės, bet stipriai sumažina akivaidžių klaidų tikimybę.
 Pabandykime sugeneruoti kelias iliustracijas.
 
-**Sezoniškumas**
-
-**Deterministinis trendas**
-
-**Atsitikrinis klaidžiojimas**
-
-
 Tam, kad išsamiai atsakyti ką ir kada taikyti jau reikia gilintis giliau. Apie tai kitame skyriuje. 
+
+## Užduotys
+
+Šios savaitės pirmoji užduotis yra sutvarkyti ankstenes užduotis, taip kad jos atitiktų
+naujai iškeltus reikalavimus.
+
+### Task 5
+
+**Pinigų paklausa.** Šioje užduotyje reikia atlikti tiesinę regresiją.
+Pakete `dynlm` yra duomenų masyvas `M1Germany` - ten yra ir jo aprašymas.
+Iš turimų duomenų sudarykite ir įvertinkite tiesinę regresiją, kurios endoneninis kintamasis yra `logm1`.
+Lygtis būtų naudojama prognozuoti pinigų kiekį artimiausiam laikotarpiui į prieki remiantis dabartine situacija.
+Taigi prognozės sudarymui lygtis gali naudoti tik tuos duomenis, kurie būtų žinomi prognozavimo momentu.
+
+### Challange 1
+
+**Iššūkis1.** Google organziuoja progromavimo varžybas. 
+Dalyvauti gali visi norintys ir naudoti gali viską ką sugeba. 
+[Tikiuosi, kad ką nors sudomins](https://code.google.com/codejam/). 
+Noriu pasiūlyti iššukį iš vienos užduoties: 
+[Rope Intranet.](https://code.google.com/codejam/contest/619102/dashboard)
+Jeigu padarysite R funkciją, kuri gauna teisingą atsakymą (dideliam masyvui) - 
+tai gausite papildomų taškų. Maža to, jei jūsų programa savo greičiu aplenks mano parašytą funkciją, tai
+pipildomi taškai taps auksiniais taškais. 
+Užduotį reikia atlikti individualiai ir savarankiškai, taip pat reikia mokėti ją paaiškinti.
+
+
 
 Chapter 5. Laiko eilučių įvadas
 ================================================================
+
+Literatūra: Laiko eilučių pagrindinis šaltinis [@Hyndman2014a] - taip išliks visą šį kursą.
+Papildomas šaltinis [@Leipus2010a] - tai daug labiau teoretinis šaltinis, norint griežtai suprasti sąvokas.
+Kiti šaltiniai taip pat geri ir naudingi - bet jie pasidaro naudingesni, kai jums bus aiški esmė.
+
+Ankstesnių paskaitų akcentai:
+
+* Griežtas namų darbų terminas: 2016-03-22 23:59
+* Laiškų rašymo niuansai 
+* Iššūkis1
+* Tiesinės regresijos komplikacijų pakartojimas
 
 
 ### Sąvokos
@@ -1094,7 +1124,7 @@ kai $s, t \in T$.
 **Stacionarumas (siaurąja prasme).**
 Seka ${X_t , t \in Z}$ vadinama stacionariąja siaurąja (arba
 griežtąja) prasme, jeigu su visais $k \in N  t_1, t_2 , ..., t_k$ ir $h \in Z$ vektorių
-$(X_{t_1} , ..., X_{t_k} )$ ir $(X_{t_1 + h} , ..., X_{t_k +h} )$ pasiskirstymai sutampa.
+$(X_{t_1} , ..., X_{t_k} )$ ir $(X_{t_1 + h} , ..., X_{t_k+h})$ pasiskirstymai sutampa.
 
 Nesunku matyti, jeigu seka ${X_t}$ yra stacionari siaurąja prasme ir
 $E|X_t|^2 < \infty$ , tai ji yra stacionari ir plačiąja prasme. Atvirkščias gi teiginys
@@ -1139,9 +1169,23 @@ Išsamesnis paaiškinimas yra [@Leipus2010a, ch. 7.3] (o šiame kurse kolkas už
 ir dispersija $\sigma^2$ , jeigu $EZ_t = 0$, $r(0)=\sigma^2$ ir $r(h)=0$, kai $h>0$.
 Žymėsime  $t \sim BT (0, \sigma^2 )$.
 
+## Užduotys
+
+### Task 6
+
+Šaltinyje [@Hyndman2014a, ch. 1. Introduction to forecasting, Lab Session 1] Yra dvi užduotys.
+Jums reikia padaryti vieną (galite laisvai pasirinkti kurią). 
+Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. 
+Šalia grafikų būtinai pateikite savo komentarus.
 
 
 
+### Task 7
+
+Šaltinyje [@Hyndman2014a, ch. 2. The forecaster’s toolbox, Lab Session 2] Yra penkios užduotys.
+Jums reikia padaryti tris (galite laisvai pasirinkti kurias). 
+Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. 
+Šalia grafikų būtinai pateikite savo komentarus.
 
 
 References
@@ -1165,12 +1209,21 @@ references:
     year: 2013
 
 - id: Leipus2010a
-  title: Finansin ̇es laiko eilut ̇es
+  title: Finansinės laiko eilutės
   author:
   - family: Leipus
     given: Remigijus
   issued:
     year: 2010
+
+- id: Hyndman2014a
+  title: Forecasting: Principles & Practice
+  author:
+  - family: Hyndman
+    given: Rob J 
+  issued:
+    year: 2014
+
 
  
 - id: fenner2012a
