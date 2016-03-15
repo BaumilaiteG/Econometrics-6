@@ -107,7 +107,7 @@ you are free to give your reasons and negotiate.
 
 ### Learning material
 
-Selected textbooks that can be useful in this course could be found in `literature` folder.
+Selected textbooks that can be useful in this course could be found in [drobbox](https://dl.dropboxusercontent.com/u/106040112/literature.zip).
 In addition, all references are given at the end o this document.
 
 
