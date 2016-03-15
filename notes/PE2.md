@@ -322,7 +322,7 @@ summary(x)
 ## [1] 0.66
 ## [1] "O cia galiausiai generavimo pvz:"
 ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## -3.845000 -0.677900 -0.002790 -0.008812  0.680500  3.538000
+## -3.536000 -0.656000  0.019830  0.004157  0.670800  3.525000
 ```
 
 Pasižiurėkime grafini skirstinio vertinimą:
@@ -392,11 +392,11 @@ quantile(y, 0.7)
 
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0113  0.5667  0.8241  0.8277  1.0800  1.9810 
-## [1] 0.3265
-## [1] 0.2994
+## 0.01697 0.56740 0.82230 0.82140 1.07400 1.93500 
+## [1] 0.3211
+## [1] 0.2961
 ##      70% 
-## 1.027598
+## 1.021676
 ```
 
 
@@ -434,9 +434,9 @@ mean(sim)
 
 ```
 ## [1] 8
-## [1] 5
-## [1] FALSE
-## [1] 0.2182
+## [1] 11
+## [1] TRUE
+## [1] 0.2221
 ```
 
 #### Pvz. 3
@@ -1073,7 +1073,7 @@ naujai iškeltus reikalavimus.
 
 **Pinigų paklausa.** Šioje užduotyje reikia atlikti tiesinę regresiją.
 Pakete `dynlm` yra duomenų masyvas `M1Germany` - ten yra ir jo aprašymas.
-Iš turimų duomenų sudarykite ir įvertinkite tiesinę regresiją, kurios endoneninis kintamasis yra `logm1`.
+Iš turimų duomenų sudarykite ir įvertinkite tiesinę regresiją, kurios endogeninis kintamasis yra `logm1`.
 Lygtis būtų naudojama prognozuoti pinigų kiekį artimiausiam laikotarpiui į prieki remiantis dabartine situacija.
 Taigi prognozės sudarymui lygtis gali naudoti tik tuos duomenis, kurie būtų žinomi prognozavimo momentu.
 
@@ -1199,7 +1199,7 @@ references:
     given: G. Jay
   issued:
     year: 2011
-
+    
 - id: Lavine2013a
   title: Introduction to Statistical Thought
   author:
@@ -1215,32 +1215,13 @@ references:
     given: Remigijus
   issued:
     year: 2010
-
+    
 - id: Hyndman2014a
-  title: Forecasting: Principles & Practice
+  title: Forecasting - Principles and Practice
   author:
   - family: Hyndman
-    given: Rob J 
+    given: Rob J
   issued:
     year: 2014
-
-
- 
-- id: fenner2012a
-  title: One-click science marketing
-  author:
-  - family: Fenner
-    given: Martin
-  container-title: Nature Materials
-  volume: 11
-  URL: 'http://dx.doi.org/10.1038/nmat3283'
-  DOI: 10.1038/nmat3283
-  issue: 4
-  publisher: Nature Publishing Group
-  page: 261-263
-  type: article-journal
-  issued:
-    year: 2012
-    month: 3
 ---
 
