@@ -184,7 +184,7 @@ Papildomi aspektai:
 * Papildomos pastangos. Ar autorius pasistengė ir pateikė gilesnę analizę, negu buvo galima tikėtis iš užduoties?
   O gal techniškai labai gerai realizuotas - pavyzdžiui padaryta shiny aplikacija.
   
-* Kiti niuansai. Gal darbas unikalus? Gal užduotis buvo peproporcingai sudėtinga?
+* Kiti niuansai. Gal darbas unikalus? Gal užduotis buvo neproporcingai sudėtinga?
 
 
 ## Task 1. Rmd in Github
@@ -919,12 +919,6 @@ Literatūra: Laiko eilučių pagrindinis šaltinis [@Hyndman2014a] - taip išlik
 Papildomas šaltinis [@Leipus2010a] - tai daug labiau teoretinis šaltinis, norint griežtai suprasti sąvokas.
 Kiti šaltiniai taip pat geri ir naudingi - bet jie pasidaro naudingesni, kai jums bus aiški esmė.
 
-Ankstesnių paskaitų akcentai:
-
-* Griežtas namų darbų terminas: 2016-03-22 23:59
-* Laiškų rašymo niuansai 
-* Iššūkis1
-* Tiesinės regresijos komplikacijų pakartojimas
 
 
 ### Sąvokos
@@ -1007,6 +1001,24 @@ Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas.
 Jums reikia padaryti tris (galite laisvai pasirinkti kurias). 
 Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. 
 Šalia grafikų būtinai pateikite savo komentarus.
+
+
+### Task 8
+
+Jums reikės skaityti savo kolegų darbus ir juos vertinti.
+Kiekvienam reikės įvertinti penkis savo kurso draugus.
+Priskirti asmenys yra mano github paskyroje esančiame faile studentai.xlsx darbalapyje "Vertinimų paskirstymas".
+Jums reikia perskaityti visų paskirtų asmenų visas atlikas užduotis.
+Tuomet kiekvienai užduočiai reikės užpildyti 
+[klausimyną](https://docs.google.com/forms/d/1W-LLoYvT9YbhyGetV2BNqDcA7KwZzOCeHwwWp8g7m38/viewform?c=0&w=1).
+Rekomenduoju nepildyti klausimyno iš karto, visų pirma perskaitykite užduotis, palyginkite kokybę, o kai jau turėsite nuomonę - tuomet užpildykite klausimyną.
+Skaitykite ir vertinkite atsakingai. 
+Jeigu kolega padarė klaidų ir jūs to nepastebėjote, tai dabar šios klaidos tapo ir Jūsų klaidomis.
+
+
+
+
+
 
 
 References

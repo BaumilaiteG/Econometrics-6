@@ -101,7 +101,7 @@ you are free to give your reasons and negotiate.
 
 ### Learning material
 
-Selected textbooks that can be useful in this course could be found in `literature` folder.
+Selected textbooks that can be useful in this course could be found in [drobbox](https://dl.dropboxusercontent.com/u/106040112/literature.zip).
 In addition, all references are given at the end o this document.
 
 
@@ -321,8 +321,8 @@ summary(x)
 ## [1] "Ar nustebsite, kad atsakymas bus 0.66?"
 ## [1] 0.66
 ## [1] "O cia galiausiai generavimo pvz:"
-##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## -3.565000 -0.670300 -0.004757  0.006681  0.675800  3.627000
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -3.56500 -0.69440 -0.02707 -0.01066  0.66330  4.13200
 ```
 
 Pasižiurėkime grafini skirstinio vertinimą:
@@ -391,12 +391,12 @@ quantile(y, 0.7)
 ```
 
 ```
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.01172 0.55950 0.81890 0.82180 1.06800 2.01500 
-## [1] 0.3137
-## [1] 0.2867
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## 0.006492 0.571000 0.825500 0.823800 1.075000 1.998000 
+## [1] 0.3194
+## [1] 0.2933
 ##      70% 
-## 1.013318
+## 1.021208
 ```
 
 
@@ -433,10 +433,10 @@ mean(sim)
 ```
 
 ```
-## [1] 3
 ## [1] 9
+## [1] 8
 ## [1] FALSE
-## [1] 0.2248
+## [1] 0.2238
 ```
 
 #### Pvz. 3
