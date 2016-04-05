@@ -865,11 +865,7 @@ Svarbu, kad prisimintumėte, kad tiesinė regresija su laiko eilutėmis yra piln
 rūpintis papildomomis savybėmis. Jei laiko eilutės nėra nei stacionarios, nei kointegruotos, tai reikia 
 kažkaip jas transformuoti, kad atsirastų stacionarumas. 
 
-### Trendai
 
-### Klaidinga regresija
-
-### Sezoniškumas
 
 ### Greiti sprendimai
 
@@ -994,7 +990,6 @@ Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas.
 Šalia grafikų būtinai pateikite savo komentarus.
 
 
-
 ### Task 7
 
 Šaltinyje [@Hyndman2014a, ch. 2. The forecaster’s toolbox, Lab Session 2] Yra penkios užduotys.
@@ -1014,6 +1009,75 @@ Tuomet kiekvienai užduočiai reikės užpildyti
 Rekomenduoju nepildyti klausimyno iš karto, visų pirma perskaitykite užduotis, palyginkite kokybę, o kai jau turėsite nuomonę - tuomet užpildykite klausimyną.
 Skaitykite ir vertinkite atsakingai. 
 Jeigu kolega padarė klaidų ir jūs to nepastebėjote, tai dabar šios klaidos tapo ir Jūsų klaidomis.
+
+### Task 9
+
+Analogiškai kaip `Task 8` turie patikrinti savo paties darbą.
+Darbą turite įvertinti taip lyg tai būtų kito žmogaus darbas - t.y. surašyti komentarus ir pastabas.
+Galbūt dabar jau kitaip darytumėte savo darbą - galbūt jau patys matote savo klaidas.
+Šis vertinimas yra būdas garbingai tai deklaruoti ir pademonstruoti savo kompetencijos padidėjimą.
+Vertinimą reikia atlikti iki balandžio 11 d. 23:59.
+
+
+Chapter 5. Esponentinis glodinimas
+================================================================
+
+Literatura [@Hyndman2014a, ch. 3.]
+
+Eksponentinio glodinimo esmė yra glodinimas (kaip netikėta :)). O kas yra glodinimas? 
+Pažiūrėkime, kaip tai atrodo:
+
+```{r}
+
+y = cumsum(rnorm(300))
+plot(y, type="l", main="eksponentinis glodinimas")
+
+alpha = 0.5
+l1 = filter(y*alpha, f=1-alpha,method = "recursive")
+lines(l1, col=2)
+
+
+alpha = 0.2
+l1 = filter(y*alpha, f=1-alpha,method = "recursive")
+lines(l1, col=3)
+
+
+alpha = 0.1
+l1 = filter(y*alpha, f=1-alpha,method = "recursive")
+lines(l1, col=4)
+
+
+```
+
+Problemos lygiai tokios pačios kaip betkuriame ekonometriniame vertinima:
+
+  1. Kaip pasirinkti parametrus?
+  2. Kaip patikrinti tinkamumą?
+  3. Jei yra trūkumų ar galima juos minimizuoti?
+
+### Task 10
+
+Šaltinyje [@Hyndman2014a, ch. 3., Lab Session 3] reikai atlikti 1. ir 2. užduotis. 
+Užduotyse prašo espermentuoti su parametrais ir modeliais - mokymosi metu ekspermentuokite tiek kiek reikia, kad 
+suprastumėte esmę, o į ataskitą dėkti 3-4 įdomiausius atvejus. Jūs patys turite atrinkti kokie atvjejai įdomisi.
+Būtinai pakomentuokite, kokią žinutę šie tvjeai perteikia.
+Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. 
+Šalia grafikų būtinai pateikite savo komentarus.
+Užduotį reikia atlikti iki balandžio 19 d. 23:59.
+
+### Task 11
+
+Šaltinyje [@Hyndman2014a, ch. 3., Lab Session 4] reikai atlikti pirmą užduotį. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. 
+Šalia grafikų būtinai pateikite savo komentarus.
+Užduotį reikia atlikti iki balandžio 19 d. 23:59.
+
+
+
+
+
+
+
+
 
 
 

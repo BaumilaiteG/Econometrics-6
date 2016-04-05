@@ -178,7 +178,7 @@ Papildomi aspektai:
 * Papildomos pastangos. Ar autorius pasistengė ir pateikė gilesnę analizę, negu buvo galima tikėtis iš užduoties?
   O gal techniškai labai gerai realizuotas - pavyzdžiui padaryta shiny aplikacija.
   
-* Kiti niuansai. Gal darbas unikalus? Gal užduotis buvo peproporcingai sudėtinga?
+* Kiti niuansai. Gal darbas unikalus? Gal užduotis buvo neproporcingai sudėtinga?
 
 
 ## Task 1. Rmd in Github
@@ -321,8 +321,8 @@ summary(x)
 ## [1] "Ar nustebsite, kad atsakymas bus 0.66?"
 ## [1] 0.66
 ## [1] "O cia galiausiai generavimo pvz:"
-##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## -3.56500 -0.69440 -0.02707 -0.01066  0.66330  4.13200
+##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
+## -3.633000 -0.662100  0.011870  0.006472  0.674300  3.964000
 ```
 
 Pasižiurėkime grafini skirstinio vertinimą:
@@ -391,12 +391,12 @@ quantile(y, 0.7)
 ```
 
 ```
-##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## 0.006492 0.571000 0.825500 0.823800 1.075000 1.998000 
-## [1] 0.3194
-## [1] 0.2933
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+## 0.01476 0.56570 0.82250 0.82510 1.07200 1.91900 
+## [1] 0.3126
+## [1] 0.2854
 ##      70% 
-## 1.021208
+## 1.014903
 ```
 
 
@@ -433,10 +433,10 @@ mean(sim)
 ```
 
 ```
-## [1] 9
-## [1] 8
+## [1] 7
+## [1] 11
 ## [1] FALSE
-## [1] 0.2238
+## [1] 0.2261
 ```
 
 #### Pvz. 3
@@ -1044,11 +1044,7 @@ Svarbu, kad prisimintumėte, kad tiesinė regresija su laiko eilutėmis yra piln
 rūpintis papildomomis savybėmis. Jei laiko eilutės nėra nei stacionarios, nei kointegruotos, tai reikia 
 kažkaip jas transformuoti, kad atsirastų stacionarumas. 
 
-### Trendai
 
-### Klaidinga regresija
-
-### Sezoniškumas
 
 ### Greiti sprendimai
 
@@ -1098,12 +1094,6 @@ Literatūra: Laiko eilučių pagrindinis šaltinis [@Hyndman2014a] - taip išlik
 Papildomas šaltinis [@Leipus2010a] - tai daug labiau teoretinis šaltinis, norint griežtai suprasti sąvokas.
 Kiti šaltiniai taip pat geri ir naudingi - bet jie pasidaro naudingesni, kai jums bus aiški esmė.
 
-Ankstesnių paskaitų akcentai:
-
-* Griežtas namų darbų terminas: 2016-03-22 23:59
-* Laiškų rašymo niuansai 
-* Iššūkis1
-* Tiesinės regresijos komplikacijų pakartojimas
 
 
 ### Sąvokos
@@ -1179,13 +1169,99 @@ Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas.
 Šalia grafikų būtinai pateikite savo komentarus.
 
 
-
 ### Task 7
 
 Šaltinyje [@Hyndman2014a, ch. 2. The forecaster’s toolbox, Lab Session 2] Yra penkios užduotys.
 Jums reikia padaryti tris (galite laisvai pasirinkti kurias). 
 Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. 
 Šalia grafikų būtinai pateikite savo komentarus.
+
+
+### Task 8
+
+Jums reikės skaityti savo kolegų darbus ir juos vertinti.
+Kiekvienam reikės įvertinti penkis savo kurso draugus.
+Priskirti asmenys yra mano github paskyroje esančiame faile studentai.xlsx darbalapyje "Vertinimų paskirstymas".
+Jums reikia perskaityti visų paskirtų asmenų visas atlikas užduotis.
+Tuomet kiekvienai užduočiai reikės užpildyti 
+[klausimyną](https://docs.google.com/forms/d/1W-LLoYvT9YbhyGetV2BNqDcA7KwZzOCeHwwWp8g7m38/viewform?c=0&w=1).
+Rekomenduoju nepildyti klausimyno iš karto, visų pirma perskaitykite užduotis, palyginkite kokybę, o kai jau turėsite nuomonę - tuomet užpildykite klausimyną.
+Skaitykite ir vertinkite atsakingai. 
+Jeigu kolega padarė klaidų ir jūs to nepastebėjote, tai dabar šios klaidos tapo ir Jūsų klaidomis.
+
+### Task 9
+
+Analogiškai kaip `Task 8` turie patikrinti savo paties darbą.
+Darbą turite įvertinti taip lyg tai būtų kito žmogaus darbas - t.y. surašyti komentarus ir pastabas.
+Galbūt dabar jau kitaip darytumėte savo darbą - galbūt jau patys matote savo klaidas.
+Šis vertinimas yra būdas garbingai tai deklaruoti ir pademonstruoti savo kompetencijos padidėjimą.
+Vertinimą reikia atlikti iki Balandžio 11 d. 23:59.
+
+
+Chapter 5. Esponentinis glodinimas
+================================================================
+
+Literatura [@Hyndman2014a, ch. 3.]
+
+Eksponentinio glodinimo esmė yra glodinimas (kaip netikėta :)). O kas yra glodinimas? 
+Pažiūrėkime, kaip tai atrodo:
+
+
+```r
+y = cumsum(rnorm(300))
+plot(y, type="l", main="eksponentinis glodinimas")
+
+alpha = 0.5
+l1 = filter(y*alpha, f=1-alpha,method = "recursive")
+lines(l1, col=2)
+
+
+alpha = 0.2
+l1 = filter(y*alpha, f=1-alpha,method = "recursive")
+lines(l1, col=3)
+
+
+alpha = 0.1
+l1 = filter(y*alpha, f=1-alpha,method = "recursive")
+lines(l1, col=4)
+```
+
+![](PE2_files/figure-html/unnamed-chunk-5-1.png) 
+
+Problemos lygiai tokios pačios kaip betkuriame ekonometriniame vertinima:
+
+  1. Kaip pasirinkti parametrus?
+  2. Kaip patikrinti tinkamumą?
+  3. Jei yra trūkumų ar galima juos minimizuoti?
+
+### Task 10
+
+Šaltinyje [@Hyndman2014a, ch. 3., Lab Session 3] reikai atlikti 1. ir 2. užduotis. 
+Užduotyse prašo espermentuoti su parametrais ir modeliais - mokymosi metu ekspermentuokite tiek kiek reikia, kad 
+suprastumėte esmę, o į ataskitą dėkti 3-4 įdomiausius atvejus. Jūs patys turite atrinkti kokie atvjejai įdomisi.
+Būtinai pakomentuokite, kokią žinutę šie tvjeai perteikia.
+Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. 
+Šalia grafikų būtinai pateikite savo komentarus.
+Užduotį reikia atlikti iki Balandžio 19 d. 23:59.
+
+### Task 11
+
+Šaltinyje [@Hyndman2014a, ch. 3., Lab Session 4] reikai atlikti pirmą užduotį. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. 
+Šalia grafikų būtinai pateikite savo komentarus.
+Užduotį reikia atlikti iki Balandžio 19 d. 23:59.
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 References
