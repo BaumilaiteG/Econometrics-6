@@ -322,7 +322,7 @@ summary(x)
 ## [1] 0.66
 ## [1] "O cia galiausiai generavimo pvz:"
 ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## -4.014000 -0.663200 -0.000754  0.006831  0.689100  3.789000
+## -3.936000 -0.681500 -0.010680 -0.009881  0.681500  3.749000
 ```
 
 Pasižiurėkime grafini skirstinio vertinimą:
@@ -392,11 +392,11 @@ quantile(y, 0.7)
 
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.01089 0.56560 0.82210 0.82380 1.07200 1.98300 
-## [1] 0.3207
-## [1] 0.2977
-##      70% 
-## 1.021955
+## 0.00753 0.55940 0.82240 0.82210 1.07100 2.09100 
+## [1] 0.3165
+## [1] 0.2938
+##    70% 
+## 1.0176
 ```
 
 
@@ -433,10 +433,10 @@ mean(sim)
 ```
 
 ```
-## [1] 4
-## [1] 11
+## [1] 7
+## [1] 9
 ## [1] FALSE
-## [1] 0.2222
+## [1] 0.2255
 ```
 
 #### Pvz. 3
@@ -1263,7 +1263,7 @@ Chapter 7. Making time series stationary
 ================================================================
 
 ### Task 13
-Šaltinyje [@Hyndman2014a, ch. 6., Lab Session 6b] reikai atlikti pirmas tris užduotis užduotis. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. Užduotį reikia atlikti iki balandžio 26 d. 23:59.
+Šaltinyje [@Hyndman2014a, ch. 6., Lab Session 6] reikai atlikti pirmas tris užduotis užduotis. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. Užduotį reikia atlikti iki balandžio 26 d. 23:59.
 
 
 Chapter 8. ARIMA
