@@ -1084,7 +1084,7 @@ Chapter 7. Making time series stationary
 ================================================================
 
 ### Task 13
-Šaltinyje [@Hyndman2014a, ch. 5., Lab Session 6b] reikai atlikti pirmas tris užduotis užduotis. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. Užduotį reikia atlikti iki balandžio 26 d. 23:59.
+Šaltinyje [@Hyndman2014a, ch. 6., Lab Session 6b] reikai atlikti pirmas tris užduotis užduotis. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. Užduotį reikia atlikti iki balandžio 26 d. 23:59.
 
 
 Chapter 8. ARIMA
