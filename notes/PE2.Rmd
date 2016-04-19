@@ -784,6 +784,7 @@ x
 L(x, 2)
 ```
 
+
 **Pvz.1** Tiesinės regresijos pvz, kuomet $y$ priklauso nuo pavėlintų savo reikšmių.
 ```{r lagInRegresionY1}
 eps = rnorm(1000)
@@ -1071,17 +1072,41 @@ Užduotį reikia atlikti iki balandžio 19 d. 23:59.
 Šalia grafikų būtinai pateikite savo komentarus.
 Užduotį reikia atlikti iki balandžio 19 d. 23:59.
 
+Chapter 6. Time series cross-validation
+================================================================
+
+### Task 12
+Šaltinyje [@Hyndman2014a, ch. 5., Lab Session 5b] reikai atlikti pirmą užduotį. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. Užduotį reikia atlikti iki balandžio 26 d. 23:59.
 
 
 
+Chapter 7. Making time series stationary
+================================================================
+
+### Task 13
+Šaltinyje [@Hyndman2014a, ch. 5., Lab Session 6b] reikai atlikti pirmas tris užduotis užduotis. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. Užduotį reikia atlikti iki balandžio 26 d. 23:59.
 
 
+Chapter 8. ARIMA
+================================================================
+
+```{r}
+L <- function(x, lag=1){
+  c(rep(NA,lag) , x[1:(length(x)-lag)])  
+}
+
+eps = rnorm(1000)
+y = filter(eps, filter=c(0.4, 0.3, 0.2), method = "recursive")
+plot(y, type="l")
+
+acf(y)
+pacf(y)
+
+fitlm = lm(y~L(y,1)+L(y,2)+L(y,3))
+summary(fitlm)
 
 
-
-
-
-
+```
 
 
 

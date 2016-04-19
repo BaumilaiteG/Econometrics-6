@@ -322,7 +322,7 @@ summary(x)
 ## [1] 0.66
 ## [1] "O cia galiausiai generavimo pvz:"
 ##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## -3.633000 -0.662100  0.011870  0.006472  0.674300  3.964000
+## -3.796000 -0.684900 -0.003449 -0.002207  0.679500  3.571000
 ```
 
 Pasižiurėkime grafini skirstinio vertinimą:
@@ -391,12 +391,12 @@ quantile(y, 0.7)
 ```
 
 ```
-##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.01476 0.56570 0.82250 0.82510 1.07200 1.91900 
-## [1] 0.3126
-## [1] 0.2854
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## 0.009798 0.547800 0.808800 0.813300 1.064000 1.947000 
+## [1] 0.3082
+## [1] 0.284
 ##      70% 
-## 1.014903
+## 1.007374
 ```
 
 
@@ -433,10 +433,10 @@ mean(sim)
 ```
 
 ```
-## [1] 7
-## [1] 11
+## [1] 10
+## [1] 10
 ## [1] FALSE
-## [1] 0.2261
+## [1] 0.2161
 ```
 
 #### Pvz. 3
@@ -867,6 +867,7 @@ L(x, 2)
 ##  [1] NA NA  1  2  3  4  5  6  7  8
 ```
 
+
 **Pvz.1** Tiesinės regresijos pvz, kuomet $y$ priklauso nuo pavėlintų savo reikšmių.
 
 ```r
@@ -1195,7 +1196,7 @@ Analogiškai kaip `Task 8` turie patikrinti savo paties darbą.
 Darbą turite įvertinti taip lyg tai būtų kito žmogaus darbas - t.y. surašyti komentarus ir pastabas.
 Galbūt dabar jau kitaip darytumėte savo darbą - galbūt jau patys matote savo klaidas.
 Šis vertinimas yra būdas garbingai tai deklaruoti ir pademonstruoti savo kompetencijos padidėjimą.
-Vertinimą reikia atlikti iki Balandžio 11 d. 23:59.
+Vertinimą reikia atlikti iki balandžio 11 d. 23:59.
 
 
 Chapter 5. Esponentinis glodinimas
@@ -1242,25 +1243,85 @@ suprastumėte esmę, o į ataskitą dėkti 3-4 įdomiausius atvejus. Jūs patys 
 Būtinai pakomentuokite, kokią žinutę šie tvjeai perteikia.
 Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. 
 Šalia grafikų būtinai pateikite savo komentarus.
-Užduotį reikia atlikti iki Balandžio 19 d. 23:59.
+Užduotį reikia atlikti iki balandžio 19 d. 23:59.
 
 ### Task 11
 
 Šaltinyje [@Hyndman2014a, ch. 3., Lab Session 4] reikai atlikti pirmą užduotį. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. 
 Šalia grafikų būtinai pateikite savo komentarus.
-Užduotį reikia atlikti iki Balandžio 19 d. 23:59.
+Užduotį reikia atlikti iki balandžio 19 d. 23:59.
+
+Chapter 6. Time series cross-validation
+================================================================
+
+### Task 12
+Šaltinyje [@Hyndman2014a, ch. 5., Lab Session 5b] reikai atlikti pirmą užduotį. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. Užduotį reikia atlikti iki balandžio 26 d. 23:59.
 
 
 
+Chapter 7. Making time series stationary
+================================================================
+
+### Task 13
+Šaltinyje [@Hyndman2014a, ch. 5., Lab Session 6b] reikai atlikti pirmas tris užduotis užduotis. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. Užduotį reikia atlikti iki balandžio 26 d. 23:59.
 
 
+Chapter 8. ARIMA
+================================================================
 
 
+```r
+L <- function(x, lag=1){
+  c(rep(NA,lag) , x[1:(length(x)-lag)])  
+}
 
+eps = rnorm(1000)
+y = filter(eps, filter=c(0.4, 0.3, 0.2), method = "recursive")
+plot(y, type="l")
+```
 
+![](PE2_files/figure-html/unnamed-chunk-6-1.png) 
 
+```r
+acf(y)
+```
 
+![](PE2_files/figure-html/unnamed-chunk-6-2.png) 
 
+```r
+pacf(y)
+```
+
+![](PE2_files/figure-html/unnamed-chunk-6-3.png) 
+
+```r
+fitlm = lm(y~L(y,1)+L(y,2)+L(y,3))
+summary(fitlm)
+```
+
+```
+## 
+## Call:
+## lm(formula = y ~ L(y, 1) + L(y, 2) + L(y, 3))
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.2304 -0.6704 -0.0013  0.6402  3.4185 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) -0.03700    0.03316  -1.116    0.265    
+## L(y, 1)      0.40816    0.03095  13.186  < 2e-16 ***
+## L(y, 2)      0.25948    0.03254   7.976 4.16e-15 ***
+## L(y, 3)      0.22193    0.03098   7.163 1.54e-12 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.021 on 993 degrees of freedom
+##   (3 observations deleted due to missingness)
+## Multiple R-squared:  0.6693,	Adjusted R-squared:  0.6683 
+## F-statistic: 669.9 on 3 and 993 DF,  p-value: < 2.2e-16
+```
 
 
 
