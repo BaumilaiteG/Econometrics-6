@@ -321,8 +321,8 @@ summary(x)
 ## [1] "Ar nustebsite, kad atsakymas bus 0.66?"
 ## [1] 0.66
 ## [1] "O cia galiausiai generavimo pvz:"
-##      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. 
-## -3.936000 -0.681500 -0.010680 -0.009881  0.681500  3.749000
+##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
+## -4.54000 -0.67130  0.01907  0.01163  0.69210  3.60400
 ```
 
 Pasižiurėkime grafini skirstinio vertinimą:
@@ -392,11 +392,11 @@ quantile(y, 0.7)
 
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.00753 0.55940 0.82240 0.82210 1.07100 2.09100 
-## [1] 0.3165
-## [1] 0.2938
-##    70% 
-## 1.0176
+## 0.01695 0.56810 0.83100 0.82630 1.07700 1.95700 
+## [1] 0.3259
+## [1] 0.3051
+##      70% 
+## 1.024807
 ```
 
 
@@ -433,10 +433,10 @@ mean(sim)
 ```
 
 ```
-## [1] 7
-## [1] 9
-## [1] FALSE
-## [1] 0.2255
+## [1] 2
+## [1] 14
+## [1] TRUE
+## [1] 0.219
 ```
 
 #### Pvz. 3
@@ -1164,7 +1164,7 @@ ir dispersija $\sigma^2$ , jeigu $EZ_t = 0$, $r(0)=\sigma^2$ ir $r(h)=0$, kai $h
 
 ### Task 6
 
-Šaltinyje [@Hyndman2014a, ch. 1. Introduction to forecasting, Lab Session 1] Yra dvi užduotys.
+Šaltinyje [@Hyndman2014a, ch. 1. Introduction to forecasting, Lab Session 1] yra dvi užduotys.
 Jums reikia padaryti vieną (galite laisvai pasirinkti kurią). 
 Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. 
 Šalia grafikų būtinai pateikite savo komentarus.
@@ -1269,32 +1269,52 @@ Chapter 7. Making time series stationary
 Chapter 8. ARIMA
 ================================================================
 
+ARIMA modelis susideda iš trijų dalių: AR, I, MA. 
+Kiekviena iš jų verta nagrinėti atskirai.
+
+AR (autoregresioin)
+------------------------------
+
+Autoregresinis modelis yra tuomet, kai kintamojo ($y$) reikšmės priklauso nuo savo paties ankstesnių reikšmių.
+Bendruoju atveju, AR(p) modelio lygtis atrodo taip:
+
+$$y_t = \alpha_0 + \alpha_1 y_{t-1} + \dots + \alpha_p y_{t-p} + \varepsilon_t$$
+
+Modeliavimo pagalba panagrinėkime konkretų AR(3) modelį: 
+
+$$y_t = 0.4 y_{t-1} + 0.3 y_{t-2} + 0.2 y_{t-3} + \varepsilon_t.$$
+
+Žemiau pateikiamas kodas kaip jį sugeneruoti ir išbrėžti grafikus:
+
+
+```r
+eps = rnorm(1000)
+yvec = filter(eps, filter=c(0.4, 0.3, 0.2), method = "recursive")
+y = ts(yvec, start=1)
+
+
+op <- par(mfrow = c(2, 2))
+plot(y, type="l")
+acf(y)
+pacf(y)
+par(op)
+```
+
+![](PE2_files/figure-html/unnamed-chunk-6-1.png) 
+
+Atkreipkite dėmesį į PACF grafiką - jis padeda identifikuoti modelio eilę - šiuo atveju ji yra 3.
+
+### Vertinimas
+
+Autoregresijos modelį galime įvertinti kaip paprastą tiesinę regresiją. Žemiau yra pavyzdys, kaip
+galima įvertinti AR modelį naudojant `lm` funkciiją. Būtina atkreipti, kad laiko eilučių
+nerekomenduojama vertinti su `lm` funkcija - tam yra geresnių įrankių. Čia pateiktas tik pavyzdys, kuris iliustruoja, kad AR modelis iš tiesų tėra tiesinio modelio atskiras atvejis.
+
 
 ```r
 L <- function(x, lag=1){
   c(rep(NA,lag) , x[1:(length(x)-lag)])  
 }
-
-eps = rnorm(1000)
-y = filter(eps, filter=c(0.4, 0.3, 0.2), method = "recursive")
-plot(y, type="l")
-```
-
-![](PE2_files/figure-html/unnamed-chunk-6-1.png) 
-
-```r
-acf(y)
-```
-
-![](PE2_files/figure-html/unnamed-chunk-6-2.png) 
-
-```r
-pacf(y)
-```
-
-![](PE2_files/figure-html/unnamed-chunk-6-3.png) 
-
-```r
 fitlm = lm(y~L(y,1)+L(y,2)+L(y,3))
 summary(fitlm)
 ```
@@ -1306,22 +1326,506 @@ summary(fitlm)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -3.2304 -0.6704 -0.0013  0.6402  3.4185 
+## -3.6522 -0.7204 -0.0180  0.6695  3.9160 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(>|t|)    
-## (Intercept) -0.03700    0.03316  -1.116    0.265    
-## L(y, 1)      0.40816    0.03095  13.186  < 2e-16 ***
-## L(y, 2)      0.25948    0.03254   7.976 4.16e-15 ***
-## L(y, 3)      0.22193    0.03098   7.163 1.54e-12 ***
+## (Intercept) -0.01202    0.03198  -0.376    0.707    
+## L(y, 1)      0.38940    0.03100  12.561  < 2e-16 ***
+## L(y, 2)      0.27962    0.03221   8.681  < 2e-16 ***
+## L(y, 3)      0.22040    0.03101   7.107 2.26e-12 ***
 ## ---
 ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 ## 
-## Residual standard error: 1.021 on 993 degrees of freedom
+## Residual standard error: 1.008 on 993 degrees of freedom
 ##   (3 observations deleted due to missingness)
-## Multiple R-squared:  0.6693,	Adjusted R-squared:  0.6683 
-## F-statistic: 669.9 on 3 and 993 DF,  p-value: < 2.2e-16
+## Multiple R-squared:  0.6697,	Adjusted R-squared:  0.6687 
+## F-statistic: 671.1 on 3 and 993 DF,  p-value: < 2.2e-16
 ```
+
+
+
+Toliau aptarsime, kaip reikia vertinti laiko eilučių modelius.
+Konkretų ARIMA modelį geriausia vertinti su `Arima` funkcija (iš `forecast` paketo).
+Bet tam, kad įvertinti šį modelį, reikia žinoti tikslią modelio specifikaciją.
+Nežinant specifikacijos galima taikyti funkciją `auto.arima` (iš `forecast` paketo). 
+Ši funkcija pasirūpina įvertinti viską ko nenurodo ekspertas. 
+Pasižiūrėkime, kaip tai veikia
+
+
+```r
+auto.arima(y)
+```
+
+```
+## Series: y 
+## ARIMA(1,0,4) with zero mean     
+## 
+## Coefficients:
+##          ar1      ma1     ma2     ma3      ma4
+##       0.9402  -0.5528  0.0712  0.0808  -0.0547
+## s.e.  0.0144   0.0349  0.0363  0.0345   0.0334
+## 
+## sigma^2 estimated as 1.009:  log likelihood=-1424.2
+## AIC=2860.4   AICc=2860.48   BIC=2889.84
+```
+
+Atkreipkite dėmesį, kad parinkta modelio struktūra nėrą teisinga! Ji naudoja ne tik AR dalį, bet MA dalį.
+Automatizuota funkcija bando atspėti modelio struktūrą, bet nėra jokių garantijų, kad jai tai pavyko, 
+ir kad parinkta specifikacija yra teisinga. 
+Norint daryti įtaką vertinimo procesui reikia pasižiūrėti į funkcijos dokumentaciją (`?auto.arima`).
+Dabar pabanykime priversti modelį naudoti tik AR dalį (o tiksliau uždrausti vertinimui naudoti MA dalį) 
+
+```r
+auto.arima(y, max.q=0) 
+```
+
+```
+## Series: y 
+## ARIMA(3,0,0) with zero mean     
+## 
+## Coefficients:
+##          ar1     ar2     ar3
+##       0.3892  0.2794  0.2199
+## s.e.  0.0308  0.0321  0.0309
+## 
+## sigma^2 estimated as 1.009:  log likelihood=-1424.04
+## AIC=2856.07   AICc=2856.11   BIC=2875.7
+```
+
+Dabar jau naudojama tik AR dalis, bet parinkta eilė vis dar nėra teisinga. Pabandykime sumažinti modelio eilę
+
+```r
+auto.arima(y, max.p=3, max.q=0) 
+```
+
+```
+## Series: y 
+## ARIMA(3,0,0) with zero mean     
+## 
+## Coefficients:
+##          ar1     ar2     ar3
+##       0.3892  0.2794  0.2199
+## s.e.  0.0308  0.0321  0.0309
+## 
+## sigma^2 estimated as 1.009:  log likelihood=-1424.04
+## AIC=2856.07   AICc=2856.11   BIC=2875.7
+```
+
+Dabar gautas modelis yra teisinga specifikuotas. Konkretų modelį galime įvertinti naudodami `Arima` funkcija.
+
+```r
+Arima(y, order=c(3,0,0), include.constant=FALSE) 
+```
+
+```
+## Series: y 
+## ARIMA(3,0,0) with zero mean     
+## 
+## Coefficients:
+##          ar1     ar2     ar3
+##       0.3892  0.2794  0.2199
+## s.e.  0.0308  0.0321  0.0309
+## 
+## sigma^2 estimated as 1.009:  log likelihood=-1424.04
+## AIC=2856.07   AICc=2856.11   BIC=2875.7
+```
+
+### Kokybės tikrinimas
+
+Standartiškai modelių tikslumą galime įvertinti su `accuracy` funkciją. Pažiūrėkime visų naudotų modelių 
+tikslumą (*in sample*).
+
+
+```r
+fit_actual = Arima(y, order=c(3,0,0), include.constant=FALSE) 
+fit_auto_full = auto.arima(y)
+fit_auto_ar = auto.arima(y, max.q=0) 
+fit_auto_ar3 = auto.arima(y, max.p=3, max.q=0) 
+
+ans = rbind(
+  accuracy(fit_actual),
+  accuracy(fit_auto_full),
+  accuracy(fit_auto_ar),
+  accuracy(fit_auto_ar3)
+)
+rownames(ans) <- c('actual', 'auto_full', 'auto_ar', 'auto_ar3')
+kable(ans, digits=3)
+```
+
+                 ME    RMSE     MAE      MPE      MAPE    MASE     ACF1
+----------  -------  ------  ------  -------  --------  ------  -------
+actual       -0.012   1.004   0.808   20.953   261.949   0.849   -0.002
+auto_full    -0.012   1.005   0.809   20.253   261.199   0.849    0.000
+auto_ar      -0.012   1.004   0.808   20.953   261.949   0.849   -0.002
+auto_ar3     -0.012   1.004   0.808   20.953   261.949   0.849   -0.002
+
+Galime matyti, kad `auto_full` modelio tikslumai yra geriausi - 
+čia ne atsitiktinumas. `auto.arima` yra labai linkusi prisitaikyti prie duomenų.
+Pabandykime tuos pačių modelius įvertinti sumažintame masyve, o po to patikrinti jų tikslumą (*out of sample*).
+
+
+```r
+y_insample = window(y, end=700.5)
+
+fit_actual = Arima(y_insample, order=c(3,0,0), include.constant=FALSE) 
+fit_auto_full = auto.arima(y_insample)
+fit_auto_ar = auto.arima(y_insample, max.q=0) 
+fit_auto_ar3 = auto.arima(y_insample, max.p=3, max.q=0) 
+
+f_actual = forecast(fit_actual)
+f_auto_full = forecast(fit_auto_full)
+f_auto_ar = forecast(fit_auto_ar)
+f_auto_ar3 = forecast(fit_auto_ar3)
+
+ans = rbind(
+  accuracy(f_actual),
+  accuracy(f_auto_full),
+  accuracy(f_auto_ar),
+  accuracy(f_auto_ar3)
+)
+```
+
+Viršuje matote lentele, kurioje yra tikslumas (*in sample*). O dabar gaukime analogišką 
+tikslumą (*out of sample*). Pamatysime, kad dabar rezultatai reikšmingai pasikeitė.
+
+
+```r
+rownames(ans) <- c('actual', 'auto_full', 'auto_ar', 'auto_ar3')
+kable(ans, digits=3)
+```
+
+                 ME    RMSE     MAE      MPE      MAPE    MASE     ACF1
+----------  -------  ------  ------  -------  --------  ------  -------
+actual       -0.026   0.998   0.796   14.375   320.964   0.842   -0.003
+auto_full    -0.005   1.016   0.815    4.663   348.398   0.862    0.002
+auto_ar      -0.005   1.014   0.811    2.053   359.713   0.858   -0.012
+auto_ar3     -0.005   1.014   0.811    2.053   359.713   0.858   -0.012
+
+```r
+ans = rbind(
+  accuracy(f_actual, y)[2,],
+  accuracy(f_auto_full, y)[2,],
+  accuracy(f_auto_ar, y)[2,],
+  accuracy(f_auto_ar3, y)[2,]
+)
+rownames(ans) <- c('actual', 'auto_full', 'auto_ar', 'auto_ar3')
+kable(ans, digits=3)
+```
+
+                ME    RMSE     MAE       MPE      MAPE    MASE     ACF1   Theil's U
+----------  ------  ------  ------  --------  --------  ------  -------  ----------
+actual       0.744   0.975   0.751    12.072   240.514   0.794   -0.306       1.428
+auto_full    0.958   1.155   0.958    -7.608   342.091   1.014   -0.180       1.770
+auto_ar      1.113   1.292   1.113   -19.140   397.553   1.178   -0.209       1.929
+auto_ar3     1.113   1.292   1.113   -19.140   397.553   1.178   -0.209       1.929
+
+
+MA (Moving average) 
+------------------------------
+
+Slenkantis vidurkis (Moving average) aprašomas tokiu modeliu
+
+$$y_t = c + e_t + \theta_1 e_{t-1} + \dots + \theta_q e_{t-q}.$$
+
+Įvertinkime konkretų modelį 
+
+$$y_t = c + e_t + 0.8 e_{t-1} + 0.7 e_{t-1}  + 0.6 e_{t-1} .$$
+
+
+```r
+eps = rnorm(1000)
+yvec = filter(eps, filter=c(1, 0.8, 0.7, 0.6), method = "convolution")
+yvec = yvec[!is.na(yvec)]
+y = ts(yvec, start=1)
+
+
+op <- par(mfrow = c(2, 2))
+plot(y, type="l")
+acf(y)
+pacf(y)
+par(op)
+```
+
+![](PE2_files/figure-html/unnamed-chunk-16-1.png) 
+
+Atkreipkite dėmesį į ACF grafiką - jis padeda nustatyti MA eilę.
+
+Vertinti taip pat galime su `auto.arima`, bet tipiškai jos specifikacija nebus teisinga
+(bet kokybės rodikliai būtų geri): 
+
+
+```r
+auto.arima(y)
+```
+
+```
+## Series: y 
+## ARIMA(0,0,3) with zero mean     
+## 
+## Coefficients:
+##          ma1     ma2     ma3
+##       0.8017  0.7199  0.6030
+## s.e.  0.0258  0.0289  0.0247
+## 
+## sigma^2 estimated as 1.038:  log likelihood=-1434.44
+## AIC=2876.87   AICc=2876.91   BIC=2896.49
+```
+
+Konkretų modelį galime įvertinti su `Arima` funkciją.
+
+```r
+Arima(y, order=c(0,0,3), include.constant=FALSE) 
+```
+
+```
+## Series: y 
+## ARIMA(0,0,3) with zero mean     
+## 
+## Coefficients:
+##          ma1     ma2     ma3
+##       0.8017  0.7199  0.6030
+## s.e.  0.0258  0.0289  0.0247
+## 
+## sigma^2 estimated as 1.038:  log likelihood=-1434.44
+## AIC=2876.87   AICc=2876.91   BIC=2896.49
+```
+
+
+I (Integrated) 
+------------------------------
+
+Duomenų eilutė yra integruota, jei ji turi atsitiktinio klaidžiojimo savybių.
+Primenu, kad atsitiktinis klaidžiojimas yra toks modelis:
+$$ y_t = y_{t-1} + e_t.$$
+
+Šis modelis nėra stacionarus, o visos paklaidos turi tą patį svorį ateities reikšmėms.
+Šiam modeliui nereikia vertinti jokių koeficientų, tiesiog turint duomenis reikia pasitikrinti ar jie
+pasižymi atsitiktinio klaidžiojimo savybėmis. 
+
+
+
+
+```r
+eps = rnorm(1000)
+yvec = filter(eps, filter=c(1), method = "recursive")
+y = ts(yvec, start=1)
+```
+
+Patikriname, ar duomenys turi atsitiktinio klaidžiojimo savybių:
+
+```r
+adf.test(y)
+```
+
+```
+## 
+## 	Augmented Dickey-Fuller Test
+## 
+## data:  y
+## Dickey-Fuller = -1.9532, Lag order = 9, p-value = 0.5981
+## alternative hypothesis: stationary
+```
+
+`auto.arima` paprastai neblogai identifikuoja atsitiktinio klaidžiojimo eilę.
+
+```r
+auto.arima(y)
+```
+
+```
+## Series: y 
+## ARIMA(1,1,1)                    
+## 
+## Coefficients:
+##          ar1      ma1
+##       0.9348  -0.9610
+## s.e.  0.0383   0.0297
+## 
+## sigma^2 estimated as 0.993:  log likelihood=-1414.06
+## AIC=2834.12   AICc=2834.14   BIC=2848.84
+```
+
+
+### Svarbūs akcentai
+
+* ARIMA yra trijų atskirų modelių junginys.
+
+* `auto.arima` parenka nebloga variantą, bet nebūtinai teisingą ir nebūtinai geriausia. 
+Automatinis parinkimas netgi koeficientų statistinis reikšmingumas nebūtinai užtikrinamas. 
+
+* Ekspertui būtina patikrinti siūlomą variantą ir daryti modifikacijas (jei reikia).
+
+* Jei norima įvertinti konkretų modelį, tuomet geriau naudoti `Arima` funkcija.
+
+* `auto.arima` vertinamas labai prisitaiko prie duomenų, todėl dažniausiai jo parinktas modelis
+turi santykinai gerus `in sample` kokybės rodiklius. Bet šis prisitaikymas gali būti klaidinantis.
+
+* Bendruoju atveju, kuo daugiau modelis turi vertinamų parametrų, 
+tuo geresni būna  `in sample` kokybės rodikliai. 
+
+* Norint kokybiškai įvertinti modelį būtina patikrinti prognozavimo kokybę ir `out of sample` vertinime.
+Bet negalima tuo piktnaudžiauti - nes intensyvus `out of sample` 
+naudojimas *de facto* padaro duomenis `in sample`. 
+
+
+### Task 14
+Šaltinyje [@Hyndman2014a, ch. 7., Lab Session 7] reikai atlikti visas užduotis. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. Užduotį reikia atlikti iki gegužės 11 d. 23:59.
+
+
+Chapter 9. Seasonl ARIMA
+===================================================
+
+Sezoninė ARIMA yra klasikinės ARIMA apibendrinimas, kuomet papildomai modeliuojami
+sezoniniai skirtumai. Konceptualiai jokių naujovių čia nėra, bet praktiškai modeliu parinkimas ir tikrinimas
+tampa ženkliai sudėtingesnis. Šaltinyje [@Hyndman2014a, ch. 8] pateikta gera iliustracija kaip galima parinkinėti modelius. 
+
+
+### Task 15
+Šaltinyje [@Hyndman2014a, ch. 7., Lab Session 7] reikiai atlikti pirmą užduotį. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. Užduotį reikia atlikti iki gegužės 11 d. 23:59.
+
+### Task 16
+
+Jums reikia patikrinti paskirtų kolegų darbus. Užduotys nuo `Task 6` iki `Task 15`.
+Vertinimus prašome rašyti į naujai sukurtą formą:
+https://docs.google.com/forms/d/1uuEcpVEJGf2eCCJvgr33JkqYi3pTruYtMdq4xkVexYA
+Labai prašau vertinti atsakingai, paliktos nepastebėtos klaidos gali jums pelnyti neigiamų taškų.
+Visus vertinimus prašau atlikti iki gegužės 26 d. 23:59.
+
+
+
+
+Tiesinės regresijos rinktiniai skyriai
+===================================================
+
+### Kointegracija
+
+Kointegracija yra kelių duomenų savybė, kuomet patys duomenys yra integruoti, bet egzistuoja jų tiesinė kombinacija,
+kurios integruotumo eilė tampa mažesnė.
+
+Pilnam supratimui pateiksime pavyzdžius. Pirmajame pavyzdyje tiek $x$, tiek $y$ yra integruoti, bet jie tarpusavyje nėra kointegruoti.
+Žemiau pateiktuose rezulatuose matysite, kad tiesinę regresija rodo reikšmingus koeficientus -
+bet ši regresija yra klaidinga. 
+Galime pastebėti, kad paklaidos išlieka integruotos - taigi ši įvertinta teisinė regresija nėra korektiška. 
+
+
+```r
+y = cumsum(rnorm(1000, mean=0.1))
+x = cumsum(rnorm(1000, mean=0.1))
+
+fit = lm(y~x)
+summary(fit)
+```
+
+```
+## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -21.250  -8.260  -1.560   5.928  23.731 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept)  2.58569    0.88866    2.91   0.0037 ** 
+## x            0.57490    0.01251   45.96   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 10.62 on 998 degrees of freedom
+## Multiple R-squared:  0.6791,	Adjusted R-squared:  0.6788 
+## F-statistic:  2112 on 1 and 998 DF,  p-value: < 2.2e-16
+```
+
+```r
+plot(fit$residuals)
+```
+
+![](PE2_files/figure-html/unnamed-chunk-22-1.png) 
+
+```r
+adf.test(fit$residuals)
+```
+
+```
+## 
+## 	Augmented Dickey-Fuller Test
+## 
+## data:  fit$residuals
+## Dickey-Fuller = -1.1233, Lag order = 9, p-value = 0.9188
+## alternative hypothesis: stationary
+```
+
+
+
+Antrame pavyzdyje pateiksime kointegruotų kintamųjų pavyzdį.
+Dabar $x$ ir $y$ yra integruoti, bet jų tiesinės regresijos paklaidos tampa ne integruotos.
+Taigi kintamieji $x$ ir $y$ yra kointegruoti - tokiu atveju taikyti tiesine regresiją galima.
+
+
+```r
+x = cumsum(rnorm(1000, mean=0.1))
+y = 2+ 3*x + rnorm(1000)
+
+fit = lm(y~x)
+summary(fit)
+```
+
+```
+## 
+## Call:
+## lm(formula = y ~ x)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -3.6975 -0.7046 -0.0247  0.6521  3.5258 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 1.962226   0.054159   36.23   <2e-16 ***
+## x           3.000194   0.001294 2318.89   <2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 1.011 on 998 degrees of freedom
+## Multiple R-squared:  0.9998,	Adjusted R-squared:  0.9998 
+## F-statistic: 5.377e+06 on 1 and 998 DF,  p-value: < 2.2e-16
+```
+
+```r
+plot(fit$residuals)
+```
+
+![](PE2_files/figure-html/unnamed-chunk-23-1.png) 
+
+```r
+adf.test(fit$residuals)
+```
+
+```
+## Warning in adf.test(fit$residuals): p-value smaller than printed p-value
+```
+
+```
+## 
+## 	Augmented Dickey-Fuller Test
+## 
+## data:  fit$residuals
+## Dickey-Fuller = -9.1469, Lag order = 9, p-value = 0.01
+## alternative hypothesis: stationary
+```
+
+
+
+### Išvados
+
+Korektiškai taikyti tiesinę regresiją laiko eilutėm galima dviem atvejais:
+
+1. Jei laiko eilutė yra stacionari.
+2. Jei duomenys yra kointegruoti.
+
+Jei duomenys netenkina šių savybių, tai reikia taikyti kokias nors transformacijas, kad jas išgauti.
 
 
 
