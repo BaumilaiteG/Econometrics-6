@@ -322,7 +322,7 @@ summary(x)
 ## [1] 0.66
 ## [1] "O cia galiausiai generavimo pvz:"
 ##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
-## -4.54000 -0.67130  0.01907  0.01163  0.69210  3.60400
+## -3.49600 -0.68350  0.01657  0.01491  0.69220  3.72700
 ```
 
 Pasižiurėkime grafini skirstinio vertinimą:
@@ -392,11 +392,11 @@ quantile(y, 0.7)
 
 ```
 ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-## 0.01695 0.56810 0.83100 0.82630 1.07700 1.95700 
-## [1] 0.3259
-## [1] 0.3051
+## 0.01027 0.56810 0.81600 0.82260 1.07300 2.10700 
+## [1] 0.3164
+## [1] 0.2906
 ##      70% 
-## 1.024807
+## 1.017671
 ```
 
 
@@ -433,10 +433,10 @@ mean(sim)
 ```
 
 ```
-## [1] 2
-## [1] 14
+## [1] 5
+## [1] 10
 ## [1] TRUE
-## [1] 0.219
+## [1] 0.2224
 ```
 
 #### Pvz. 3
@@ -1272,7 +1272,7 @@ Chapter 8. ARIMA
 ARIMA modelis susideda iš trijų dalių: AR, I, MA. 
 Kiekviena iš jų verta nagrinėti atskirai.
 
-AR (autoregresioin)
+AR (autoregresion)
 ------------------------------
 
 Autoregresinis modelis yra tuomet, kai kintamojo ($y$) reikšmės priklauso nuo savo paties ankstesnių reikšmių.
@@ -1682,7 +1682,7 @@ tampa ženkliai sudėtingesnis. Šaltinyje [@Hyndman2014a, ch. 8] pateikta gera 
 
 
 ### Task 15
-Šaltinyje [@Hyndman2014a, ch. 7., Lab Session 7] reikiai atlikti pirmą užduotį. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. Užduotį reikia atlikti iki gegužės 11 d. 23:59.
+Šaltinyje [@Hyndman2014a, ch. 8., Lab Session 8] reikiai atlikti pirmą užduotį. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. Užduotį reikia atlikti iki gegužės 11 d. 23:59.
 
 ### Task 16
 
@@ -1690,6 +1690,7 @@ Jums reikia patikrinti paskirtų kolegų darbus. Užduotys nuo `Task 6` iki `Tas
 Vertinimus prašome rašyti į naujai sukurtą formą:
 https://docs.google.com/forms/d/1uuEcpVEJGf2eCCJvgr33JkqYi3pTruYtMdq4xkVexYA
 Labai prašau vertinti atsakingai, paliktos nepastebėtos klaidos gali jums pelnyti neigiamų taškų.
+Kai padarysite visus kolegų vertinimus prašau po to įvertinti ir savo darbus.
 Visus vertinimus prašau atlikti iki gegužės 26 d. 23:59.
 
 

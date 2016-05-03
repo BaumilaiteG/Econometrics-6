@@ -1343,7 +1343,7 @@ tampa ženkliai sudėtingesnis. Šaltinyje [@Hyndman2014a, ch. 8] pateikta gera 
 
 
 ### Task 15
-Šaltinyje [@Hyndman2014a, ch. 7., Lab Session 7] reikiai atlikti pirmą užduotį. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. Užduotį reikia atlikti iki gegužės 11 d. 23:59.
+Šaltinyje [@Hyndman2014a, ch. 8., Lab Session 8] reikiai atlikti pirmą užduotį. Kaip visada užduoties rezultatas turi būti tvarkingas Rmd failas. Užduotį reikia atlikti iki gegužės 11 d. 23:59.
 
 ### Task 16
 
@@ -1351,6 +1351,7 @@ Jums reikia patikrinti paskirtų kolegų darbus. Užduotys nuo `Task 6` iki `Tas
 Vertinimus prašome rašyti į naujai sukurtą formą:
 https://docs.google.com/forms/d/1uuEcpVEJGf2eCCJvgr33JkqYi3pTruYtMdq4xkVexYA
 Labai prašau vertinti atsakingai, paliktos nepastebėtos klaidos gali jums pelnyti neigiamų taškų.
+Kai padarysite visus kolegų vertinimus prašau po to įvertinti ir savo darbus.
 Visus vertinimus prašau atlikti iki gegužės 26 d. 23:59.
 
 

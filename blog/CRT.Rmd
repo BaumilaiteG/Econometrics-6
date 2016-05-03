@@ -71,7 +71,7 @@ nei pradinį Beta skirstinį. Pasižiųrėkime, kaip atdoro vidurkio skirstinys,
 
 ```{r palyginimas}
 sim = replicate(10000, meanMC(100))
-plot(density(sim), main="Vidukrio skirstinys, kai n=100", xlab="x", ylab="Tankis", 
+plot(density(sim), main="Vidurkio skirstinys, kai n=100", xlab="x", ylab="Tankis", 
      lwd=2, xlim=c(0.3, 0.65))
 curve(dnorm(x, mean=mean(sim), sd=sd(sim)), add=TRUE, col=2, lwd=2, lty=2 )
 legend("topleft", c("MC tankis", "Normalusis tankis"), 

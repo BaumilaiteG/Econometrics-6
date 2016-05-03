@@ -18,7 +18,7 @@ kurią ir iliustruosime šiame tinklaraščio įraše.
 ### Formalus teiginys {#formalus-teiginys}
 
 Lindeberg–Lévy CLT. Tarkime {*X*<sub>1</sub>, *X*<sub>2</sub>, ...}
-nepriklausomų atsitiktinių dydžių suma su vidurkiu
+nepriklausomų atsitiktinių dydžių seka su vidurkiu
 *E*[*X*<sub>*i*</sub>] = *μ* ir
 *V**a**r*[*X*<sub>*i*</sub>] = *σ*<sup>2</sup> \< ∞. Kuomet *n* artėja į
 begalybę, tuomet
@@ -72,14 +72,14 @@ par(op)
 
 ![](CRT_files/figure-markdown_phpextra/mazuNSkirstiniai-1.png)
 
-Galime pastebėti, kad nes su net su nedideliais *n* vidurkis daug labiau
+Galime pastebėti, kad net su nedideliais *n* vidurkis daug labiau
 primena normalųjį skirstinį, nei pradinį Beta skirstinį. Pasižiųrėkime,
 kaip atdoro vidurkio skirstinys, kai *n* = 100. Taip pat palyginkime tai
 su normaliuoju skirstiniu.
 
 ~~~~ r
 sim = replicate(10000, meanMC(100))
-plot(density(sim), main="Vidukrio skirstinys, kai n=100", xlab="x", ylab="Tankis", 
+plot(density(sim), main="Vidurkio skirstinys, kai n=100", xlab="x", ylab="Tankis", 
      lwd=2, xlim=c(0.3, 0.65))
 curve(dnorm(x, mean=mean(sim), sd=sd(sim)), add=TRUE, col=2, lwd=2, lty=2 )
 legend("topleft", c("MC tankis", "Normalusis tankis"), 
@@ -90,8 +90,9 @@ legend("topleft", c("MC tankis", "Normalusis tankis"),
 ![](CRT_files/figure-markdown_phpextra/palyginimas-1.png)
 
 Kaip matome, dabar skirstinių panašumas tampa labai ryškus -- tiksliai
-taip, kad ir numato CRT.
+taip, kad ir numato CRT. Tai tik maža iliustracija iliustruojant svarbią
+savybę, kad nepriklausomų atsitiktinių dydžių sumos skirstinys panašėja
+į normalųjį.
 
-Tai tik maža iliustracija demonstruojanti šią svarbią savybę. Tikiuosi
-jums patiko ir kažką naudingo sužinojote. Jei turite įpūdžių ar
-pastabū - prašau prašykite komentarą.
+Tikiuosi jums patiko ir kažką naudingo sužinojote. Jei turite įspūdžių
+ar pastabų -- prašau prašykite komentarą.

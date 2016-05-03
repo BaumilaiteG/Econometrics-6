@@ -1,0 +1,629 @@
+Delivered-To: vygantas.butkus@gmail.com
+Received: by 10.36.116.86 with SMTP id o83csp1391467itc;
+        Mon, 25 Apr 2016 22:06:47 -0700 (PDT)
+X-Received: by 10.66.249.228 with SMTP id yx4mr783396pac.29.1461647207377;
+        Mon, 25 Apr 2016 22:06:47 -0700 (PDT)
+Return-Path: <survey.3445@envfrm.rsys2.com>
+Received: from omp.go.surveymonkey.com (omp.go.surveymonkey.com. [12.130.139.200])
+        by mx.google.com with ESMTPS id y12si2321382pfi.207.2016.04.25.22.06.47
+        for <vygantas.butkus@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 25 Apr 2016 22:06:47 -0700 (PDT)
+Received-SPF: pass (google.com: domain of survey.3445@envfrm.rsys2.com designates 12.130.139.200 as permitted sender) client-ip=12.130.139.200;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@go.surveymonkey.com;
+       dkim=pass header.i=@responsys.net;
+       spf=pass (google.com: domain of survey.3445@envfrm.rsys2.com designates 12.130.139.200 as permitted sender) smtp.mailfrom=survey.3445@envfrm.rsys2.com;
+       dmarc=pass (p=NONE dis=NONE) header.from=go.surveymonkey.com
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=surveymonkey; d=go.surveymonkey.com;
+ h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:To:From:Reply-To:Subject:Feedback-ID:List-Unsubscribe:Message-ID; i=surveymonkey@go.surveymonkey.com;
+ bh=sPV5Q3OtuLL2IDYXQJ6u4gX8+lk=;
+ b=S1TeOqaWzr3JQQCUUDHf/pHnQaAIdblKd7Mw9uiXkbs2w1lVmymgBQhESDtLCgDbA8/3dPBsEZDb
+   5fJjBGHLAYGaIs0v2b3JiT+TKj0terJYEg1IY2jSr4mNYUCmlJC/KBpRgQ8wsF3b6fk5xF19OW4e
+   Jy6FKMIpMPsB+FxTKhk=
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; s=oraclersys; d=responsys.net;
+ h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:To:From:Reply-To:Subject:Feedback-ID:List-Unsubscribe:Message-ID;
+ bh=sPV5Q3OtuLL2IDYXQJ6u4gX8+lk=;
+ b=Ksc5+FwEybokdDqxXblGxFjUWimKCPZB+NTCOq1p82ygb2vBvMQ0qWDblMxAyppj0rcyeTxYhn3h
+   WZw2l0Fui+AaOitmVObjsQ6YzN94MXVCejpmZUP46EVhis/+aayASq96jJtdotNv7Nrs9yLhiIQN
+   cQEO8IuZI96LTdO5nFQ=
+DomainKey-Signature: a=rsa-sha1; c=nofws; q=dns; s=surveymonkey; d=go.surveymonkey.com;
+ b=oLo8Hi4qrt9giRnH2valFhOKFvzfPsYtLRUkDh6bd9apg94gsfPuxn++TSWJcUxkpj9cGE3mrn7w
+   HHfJmfSdKRL/OArHjuZBgr7tR0lTn/ozHmu5wlF/XQJXG+cD//ThSYB2m1FxYkvSP8FuylXU00Bd
+   KAJKu2e7imoYLYHSVqU=;
+Received: by omp.go.surveymonkey.com id h3rrme16230c for <vygantas.butkus@gmail.com>; Mon, 25 Apr 2016 22:06:45 -0700 (envelope-from <survey.3445@envfrm.rsys2.com>)
+X-CSA-Complaints: whitelist-complaints@eco.de
+MIME-Version: 1.0
+Content-Type: text/html;
+	charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+Date: Mon, 25 Apr 2016 22:06:45 -0700
+To: vygantas.butkus@gmail.com
+From: "SurveyMonkey" <surveymonkey@go.surveymonkey.com>
+Reply-To: "SurveyMonkey" <reply@go.surveymonkey.com>
+Subject: We Want Your Feedback
+Feedback-ID: 3445:63009:oraclersys
+List-Unsubscribe: <https://go.surveymonkey.com/pub/optout/UnsubscribeOneStepConfirmAction?YES=true&_ri_=X0Gzc2X%3DYQpglLjHJlTQGNwBONrzfOo6qRNzaCPvknKnbqhjtzaH3J7cLHquNrbR1WDfEgLrp2J1OUX7edAAn&_ei_=EolaGGF4SNMvxFF7KucKuWO7LdPjbZWJc7oqoYZ2PDpxLbrJ4gVDdn6qrpfR6MPfyEsp7mbwaL7cSyd0l1KcBlrMEWRNjDvFJomy7YEAVS1i>, <mailto:unsubscribe-YQpglLjHJlTQGNwBONrzfOo6qRNzaCPvknKnbqhjtzaH3J7cLHquNrbR1WDfEgLrp2J1OUX7edAAn@imh.rsys2.com?subject=List-Unsubscribe>
+X-sgxh1: NPnHglHkQImlsmkxnuHptQJhu
+X-rext: 5.interact2.EvO7wvjxwhA-0vQ8yNsgdgI-orlQaUcBJea-mvjI0S49MGnejiTcSw3_BLK66g
+X-cid: survey.54636
+Message-ID: <0.0.15.18D.1D19F796DB70C92.0@omp.go.surveymonkey.com>
+
+<=21DOCTYPE html PUBLIC =22-//W3C//DTD XHTML 1=2E0 Strict//EN=22 =22http://=
+www=2Ew3=2Eorg/TR/xhtml1/DTD/xhtml1-strict=2Edtd=22>
+
+<html xmlns=3D=22http://www=2Ew3=2Eorg/1999/xhtml=22>
+
+<head>
+
+<meta name=3D=22viewport=22 content=3D=22width=3D850=22>
+<meta http-equiv=3D=22Content-Type=22 content=3D=22text/html; charset=3Dutf=
+-8=22>
+<meta name=3D=22viewport=22 content=3D=22width=3Ddevice-width, initial-scal=
+e=3D1=2E0=22>
+<meta name=3D=22viewport=22 content=3D=22target-densitydpi=3Ddevice-dpi=22 =
+/>
+
+<title>SurveyMonkey</title>
+
+<style type=3D=22text/css=22>
+
+=23outlook a =7Bpadding:0;=7D
+
+a:link =7Bcolor:=2300898B;=7D      /* unvisited link */
+a:visited =7Bcolor:=2300898B;=7D  /* visited link */
+a:hover =7Bcolor:=23006C79;=7D  /* mouse over link */
+a:active =7Bcolor:=2300898B;=7D  /* selected link */
+a =7Btext-decoration: none;=7D
+a img =7Bborder:none;=7D=20
+
+body=7Bwidth:100% =21important; -webkit-text-size-adjust:100%; -ms-text-siz=
+e-adjust:100%; margin:0; padding:0;=7D=20
+
+=2EExternalClass =7Bwidth:100%;=7D
+
+=23backgroundTable =7Bmargin:0; padding:0; width:100% =21important; =7D
+
+img =7Boutline:none; text-decoration:none; -ms-interpolation-mode: bicubic;=
+=7D=20
+
+
+
+=2Eimage_fix =7Bdisplay:block;=7D
+
+span=2Eyshortcuts =7B color:=23000; background-color:none; border:none;=7D
+span=2Eyshortcuts:hover,
+span=2Eyshortcuts:active,
+span=2Eyshortcuts:focus =7Bcolor:=23000; background-color:none; border:none=
+;=7D
+
+
+=40media only screen and (max-width: 480px), only screen and (max-device-wi=
+dth: 480px)=20
+
+=7B
+		=2EappleLinks a =7Bcolor:=23999999; text-decoration: none;=7D
+
+	/* layout */
+
+		*=5Bclass=3Dhide=5D =7B display: none =21important; =7D
+		*=5Bclass=3Dtable=5D =7B width: 320px; =21important; =7D
+		*=5Bclass=3Dimage=5D =7B width: 100%; =7D
+		*=5Bclass=3Dtd334=5D =7B width: 85%; =7D
+		*=5Bclass=3Dtd334left=5D =7B width: 100%; padding-left: 2px; =7D
+		*=5Bclass=3Dtd334right=5D =7B width: 100%; padding-right: 2px; =7D
+		*=5Bclass=3D2xsmallTable=5D =7B width: 298px; =7D
+		*=5Bclass=3Dtd12=5D =7B width: 12px; =7D
+		*=5Bclass=3DheightHalf=5D =7B height: 15px; =7D
+		*=5Bclass=3Dtd330=5D =7B width: 95%; =7D
+		*=5Bclass=3Dcenter=5D =7B padding-left: 10px; =7D
+		*=5Bclass=3Dtd360=5D =7B width: 100%; =7D
+		*=5Bclass=3Dtd235=5D =7B width: 95%; =7D
+		*=5Bclass=3Dtd215=5D =7B width: 180px; =7D
+		*=5Bclass=3Dtd310=5D =7B width: 93%; =7D
+		*=5Bclass=3Dlogo=5D =7B width: 100%; =7D
+		*=5Bclass=3Dheight20=5D =7B height: 20px; =7D
+		*=5Bclass=3Dimage75=5D =7B width: 75px; height:75px; =7D
+
+=7D
+
+
+=40media only screen and (min-device-width: 768px) and (max-device-width: 1=
+024px) =7B
+
+		=2EappleLinks a =7Bcolor:=23999999; text-decoration: none;=7D
+=7D
+
+=40media only screen and (-webkit-min-device-pixel-ratio: 2) =7B
+		*=5Bclass=3Dhide=5D =7B display: none =21important; =7D
+		*=5Bclass=3Dtable=5D =7B width: 320px; =21important; =7D
+		*=5Bclass=3Dimage=5D =7B width: 100%; =7D
+		*=5Bclass=3Dtd334=5D =7B width: 85%; =7D
+		*=5Bclass=3Dtd334left=5D =7B width: 100%; padding-left: 2px; =7D
+		*=5Bclass=3Dtd334right=5D =7B width: 100%; padding-right: 2px; =7D
+		*=5Bclass=3D2xsmallTable=5D =7B width: 298px; =7D
+		*=5Bclass=3Dtd12=5D =7B width: 12px; =7D
+		*=5Bclass=3DheightHalf=5D =7B height: 15px; =7D
+		*=5Bclass=3Dtd330=5D =7B width: 95%; =7D
+		*=5Bclass=3Dcenter=5D =7B padding-left: 10px; =7D
+		*=5Bclass=3Dtd360=5D =7B width: 100%; =7D
+		*=5Bclass=3Dtd235=5D =7B width: 95%; =7D
+		*=5Bclass=3Dtd215=5D =7B width: 180px; =7D
+		*=5Bclass=3Dtd310=5D =7B width: 93%; =7D
+		*=5Bclass=3Dlogo=5D =7B width: 100%; =7D
+		*=5Bclass=3Dheight20=5D =7B height: 20px; =7D
+		*=5Bclass=3Dimage75=5D =7B width: 75px; height:75px; =7D
+=7D
+
+/* Android targeting */
+
+=40media only screen and (-webkit-device-pixel-ratio:=2E75) =7B
+
+		*=5Bclass=3Dhide=5D =7B display: none =21important; =7D
+		*=5Bclass=3Dtable=5D =7B width: 320px; =21important; =7D
+		*=5Bclass=3Dimage=5D =7B width: 100%; =7D
+		*=5Bclass=3Dtd334=5D =7B width: 85%; =7D
+		*=5Bclass=3Dtd334left=5D =7B width: 100%; padding-left: 2px; =7D
+		*=5Bclass=3Dtd334right=5D =7B width: 100%; padding-right: 2px; =7D
+		*=5Bclass=3D2xsmallTable=5D =7B width: 298px; =7D
+		*=5Bclass=3Dtd12=5D =7B width: 12px; =7D
+		*=5Bclass=3DheightHalf=5D =7B height: 15px; =7D
+		*=5Bclass=3Dtd330=5D =7B width: 95%; =7D
+		*=5Bclass=3Dcenter=5D =7B padding-left: 10px; =7D
+		*=5Bclass=3Dtd360=5D =7B width: 100%; =7D
+		*=5Bclass=3Dtd235=5D =7B width: 95%; =7D
+		*=5Bclass=3Dtd215=5D =7B width: 180px; =7D
+		*=5Bclass=3Dtd310=5D =7B width: 93%; =7D
+		*=5Bclass=3Dlogo=5D =7B width: 100%; =7D
+		*=5Bclass=3Dheight20=5D =7B height: 20px; =7D
+		*=5Bclass=3Dimage75=5D =7B width: 75px; height:75px; =7D
+
+=7D
+
+=40media only screen and (-webkit-device-pixel-ratio:1=2E5)
+
+=7B
+		*=5Bclass=3Dhide=5D =7B display: none =21important; =7D
+		*=5Bclass=3Dtable=5D =7B width: 320px; =21important; =7D
+		*=5Bclass=3Dimage=5D =7B width: 100%; =7D
+		*=5Bclass=3Dtd334=5D =7B width: 85%; =7D
+		*=5Bclass=3Dtd334left=5D =7B width: 100%; padding-left: 2px; =7D
+		*=5Bclass=3Dtd334right=5D =7B width: 100%; padding-right: 2px; =7D
+		*=5Bclass=3D2xsmallTable=5D =7B width: 298px; =7D
+		*=5Bclass=3Dtd12=5D =7B width: 12px; =7D
+		*=5Bclass=3DheightHalf=5D =7B height: 15px; =7D
+		*=5Bclass=3Dtd330=5D =7B width: 95%; =7D
+		*=5Bclass=3Dcenter=5D =7B padding-left: 10px; =7D
+		*=5Bclass=3Dtd360=5D =7B width: 100%; =7D
+		*=5Bclass=3Dtd235=5D =7B width: 95%; =7D
+		*=5Bclass=3Dtd215=5D =7B width: 180px; =7D
+		*=5Bclass=3Dtd310=5D =7B width: 93%; =7D
+		*=5Bclass=3Dlogo=5D =7B width: 100%; =7D
+		*=5Bclass=3Dheight20=5D =7B height: 20px; =7D
+		*=5Bclass=3Dimage75=5D =7B width: 75px; height:75px; =7D
+=7D
+
+/* end Android targeting */
+</style>
+
+</head>
+<body bgcolor=3D=22=23EFEFEF=22 style=3D=22-webkit-font-smoothing: antialia=
+sed; width:100% =21important; background:=23EFEFEF; -webkit-text-size-adjus=
+t:none;=22>
+<table class=3D=22table=22 width=3D=22100%=22 border=3D=220=22 cellpadding=
+=3D=220=22 cellspacing=3D=220=22 bgcolor=3D=22=23EFEFEF=22>
+	<tr>
+		<td style=3D=22border-collapse: collapse; left:auto; right:auto; position=
+:absolute;=22 width=3D=22100%=22 bgcolor=3D=22=23EFEFEF=22 valign=3D=22top=
+=22 align=3D=22center=22>
+		<table class=3D=22table=22 width=3D=22600=22 border=3D=220=22 cellpadding=
+=3D=220=22 cellspacing=3D=220=22>
+			<tr>
+				<td style=3D=22border-collapse: collapse;=22 width=3D=2214=22 height=3D=
+=2217=22 bgcolor=3D=22=23EFEFEF=22 class=3D=22hide=22><img style=3D=22outli=
+ne:none; text-decoration:none; -ms-interpolation-mode: bicubic; display:blo=
+ck;=22 src=3D=22https://static=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/s=
+urvey/contentlibrary/crm_recurring/new_basics_monthly_survey/Not_US-new-bas=
+ics-monthly-survey/images/spacer=2Egif=22 width=3D=2214=22 height=3D=2217=
+=22 alt=3D=22=22></td>
+				<td style=3D=22border-collapse: collapse;=22 width=3D=22570=22 height=
+=3D=2217=22 bgcolor=3D=22=23EFEFEF=22 class=3D=22table=22><img class=3D=22i=
+mage=22 style=3D=22outline:none; text-decoration:none; -ms-interpolation-mo=
+de: bicubic; display:block;=22 src=3D=22https://static=2Ecdn=2Eresponsys=2E=
+net/i2/responsysimages/survey/contentlibrary/crm_recurring/new_basics_month=
+ly_survey/Not_US-new-basics-monthly-survey/images/spacer=2Egif=22 width=3D=
+=22570=22 height=3D=2217=22 alt=3D=22=22></td>
+				<td style=3D=22border-collapse: collapse;=22 width=3D=2216=22 height=3D=
+=2217=22 bgcolor=3D=22=23EFEFEF=22 class=3D=22hide=22><img style=3D=22outli=
+ne:none; text-decoration:none; -ms-interpolation-mode: bicubic; display:blo=
+ck;=22 src=3D=22https://static=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/s=
+urvey/contentlibrary/crm_recurring/new_basics_monthly_survey/Not_US-new-bas=
+ics-monthly-survey/images/spacer=2Egif=22 width=3D=2216=22 height=3D=2217=
+=22 alt=3D=22=22></td>
+			</tr>
+		</table>
+		<table class=3D=22table=22 width=3D=22600=22 border=3D=220=22 cellpadding=
+=3D=220=22 cellspacing=3D=220=22>
+			<tr>
+				<td style=3D=22border-collapse: collapse;=22 width=3D=2214=22 height=3D=
+=2235=22 bgcolor=3D=22=23EFEFEF=22 class=3D=22hide=22><img style=3D=22outli=
+ne:none; text-decoration:none; -ms-interpolation-mode: bicubic; display:blo=
+ck;=22 src=3D=22https://static=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/s=
+urvey/contentlibrary/crm_recurring/new_basics_monthly_survey/Not_US-new-bas=
+ics-monthly-survey/images/spacer=2Egif=22 width=3D=2214=22 height=3D=2235=
+=22 alt=3D=22=22></td>
+				<td style=3D=22border-collapse: collapse;=22 class=3D=22logo=22><a targ=
+et=3D=22_new=22 href=3D=22https://go=2Esurveymonkey=2Ecom/pub/cc?_ri_=3DX0G=
+zc2X%3DYQpglLjHJlTQGNwBONrzfOo6qRNzaCPvknKnbqhjtzaH3J7cLHquNrbR1WDfEgLrp2J1=
+OUX7edAAnVXtpKX%3DUTWYUC&_ei_=3DEolaGGF4SNMvxFF7KucKuWO7LdPjbZWJc7oqoYZ2PDp=
+xrlaEAUysnEQjCrHDea7lwwEhzbOIqwrVARWUWVVez4aTdIF-kjcFbwTpnMkEFKwm=2E=22><im=
+g style=3D=22outline:none; text-decoration:none; -ms-interpolation-mode: bi=
+cubic; display:block;=22 src=3D=22https://static=2Ecdn=2Eresponsys=2Enet/i2=
+/responsysimages/survey/contentlibrary/crm_recurring/new_basics_monthly_sur=
+vey/Not_US-new-basics-monthly-survey/images/sm_monthly_template_09=2Egif=22=
+ border=3D=220=22 alt=3D=22=22 class=3D=22logo=22></a></td>
+                <td style=3D=22border-collapse: collapse;=22 width=3D=22360=
+=22 height=3D=2227=22 bgcolor=3D=22=23EFEFEF=22 class=3D=22hide=22 align=3D=
+=22right=22 valign=3D=22bottom=22><a target=3D=22_new=22  href=3D=22https:/=
+/go=2Esurveymonkey=2Ecom/pub/cc?_ri_=3DX0Gzc2X%3DYQpglLjHJlTQGNwBONrzfOo6qR=
+NzaCPvknKnbqhjtzaH3J7cLHquNrbR1WDfEgLrp2J1OUX7edAAnVXtpKX%3DUTWYUD&_ei_=3DE=
+tV3dwlhG5yTWxZBcmgTtjVKpCutMrGpgi7PzwobNAuRcrYzezekSuJjUQiJww_T_NQqs3zhngfk=
+q6Dts8S-JxCqbdHIjqSfiUzTjwWxElMTB-wMWrZsqVZos3lEwpGwPmG-eH_5riQDSnip19RxxvM=
+w-IyfHOL4Bdtj-iA-bDYKZ9IdL-15YQcvdTtnrrBgNdjrHVdVx0GPQkAzg4UgZUdYKw9cLIugVH=
+QRbmY9HNC2Oobqw7O33_Zy33s6VMsjnbDCJ-L7Qz3aFM1ExnIkVFj7JBEJnaHShUwhdz32IRhZc=
+KVh6MJR3onofYFQf83lrxrECMgyBDGh-57L8GRajkOE1bzrVNllX7tgts9aVQ_2Mo0QeoXmdhZY=
+rUHV249tTdbeAd75hhlxJayM3hEzh-yDxQ552zVSZYtp7eHyQFSZiTw6ATwydfEv9RPTn83pWGB=
+7nYJlMafxm5TUVT2_yTT-MZuclT2S1VeYKC0LsbzT4BxHPkQS8L7YgNKCjNhbDEFYGGZcDQ4DMz=
+71bwalUQrSMLySMVbpmUnTveZOMUW6uX6umHTcwE8GdUNOQ4eXpPWjvxEa_ipt2MhOLF1JJKhpk=
+IA-O7VvA_ZxZ8VbKOYnnFhscN_DQwxjPmv6BBn-JrWDnEsnNoe-_8ZjOO8FV3Ui-GzKLHMaVgNc=
+T_y1BzBp-KSAyLluCAxFyM=2E=22 style=3D=22font-family:Arial,Helvetica,sans-se=
+rif; font-size:12px; color:=23999999; text-decoration:none;=22>See this ema=
+il as a webpage=2E</a></td>
+				<td style=3D=22border-collapse: collapse;=22 width=3D=2216=22 height=3D=
+=2235=22 bgcolor=3D=22=23EFEFEF=22 class=3D=22hide=22><img class=3D=22image=
+=22 style=3D=22outline:none; text-decoration:none; -ms-interpolation-mode: =
+bicubic; display:block;=22 src=3D=22https://static=2Ecdn=2Eresponsys=2Enet/=
+i2/responsysimages/survey/contentlibrary/crm_recurring/new_basics_monthly_s=
+urvey/Not_US-new-basics-monthly-survey/images/spacer=2Egif=22 width=3D=2216=
+=22 height=3D=2235=22 alt=3D=22=22></td>
+			</tr>
+		</table>
+		<table class=3D=22table=22 width=3D=22600=22 border=3D=220=22 cellpadding=
+=3D=220=22 cellspacing=3D=220=22>
+			<tr>
+				<td style=3D=22border-collapse: collapse;=22 width=3D=2214=22 height=3D=
+=2215=22 bgcolor=3D=22=23EFEFEF=22 class=3D=22hide=22><img style=3D=22outli=
+ne:none; text-decoration:none; -ms-interpolation-mode: bicubic; display:blo=
+ck;=22 src=3D=22https://static=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/s=
+urvey/contentlibrary/crm_recurring/new_basics_monthly_survey/Not_US-new-bas=
+ics-monthly-survey/images/spacer=2Egif=22 width=3D=2214=22 height=3D=2215=
+=22 alt=3D=22=22></td>
+				<td style=3D=22border-collapse: collapse;=22 width=3D=22570=22 height=
+=3D=2215=22 bgcolor=3D=22=23EFEFEF=22 class=3D=22table=22><img class=3D=22i=
+mage=22 style=3D=22outline:none; text-decoration:none; -ms-interpolation-mo=
+de: bicubic; display:block;=22 src=3D=22https://static=2Ecdn=2Eresponsys=2E=
+net/i2/responsysimages/survey/contentlibrary/crm_recurring/new_basics_month=
+ly_survey/Not_US-new-basics-monthly-survey/images/spacer=2Egif=22 width=3D=
+=22570=22 height=3D=2215=22 alt=3D=22=22></td>
+				<td style=3D=22border-collapse: collapse;=22 width=3D=2216=22 height=3D=
+=2215=22 bgcolor=3D=22=23EFEFEF=22 class=3D=22hide=22><img style=3D=22outli=
+ne:none; text-decoration:none; -ms-interpolation-mode: bicubic; display:blo=
+ck;=22 src=3D=22https://static=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/s=
+urvey/contentlibrary/crm_recurring/new_basics_monthly_survey/Not_US-new-bas=
+ics-monthly-survey/images/spacer=2Egif=22 width=3D=2216=22 height=3D=2215=
+=22 alt=3D=22=22></td>
+		  </tr>
+		</table>
+		<table class=3D=22table=22 width=3D=22600=22 border=3D=220=22 cellpadding=
+=3D=220=22 cellspacing=3D=220=22>
+			<tr>
+				<td class=3D=22hide=22 style=3D=22border-collapse: collapse;=22 width=
+=3D=2214=22 bgcolor=3D=22=23EFEFEF=22><img style=3D=22outline:none; text-de=
+coration:none; -ms-interpolation-mode: bicubic; display:block;=22 src=3D=22=
+https://static=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/survey/contentlib=
+rary/crm_recurring/new_basics_monthly_survey/Not_US-new-basics-monthly-surv=
+ey/images/spacer=2Egif=22 width=3D=2214=22 alt=3D=22=22></td>
+				<td class=3D=22table=22 width=3D=22600=22 bgcolor=3D=22=23FFFFFF=22 ali=
+gn=3D=22center=22 valign=3D=22top=22 style=3D=22
+				padding:10px 0px 15px 0px;
+				-webkit-border-radius: 5px;
+				-moz-border-radius: 5px;
+				border-radius: 5px;
+				-moz-background-clip: padding;
+				-webkit-background-clip: padding-box;
+				background-clip: padding-box;
+				outline: none;
+				display: inline-block;
+				border: solid 1px =23dddddd;
+				background-color: =23ffffff;=22>
+
+<=21---Start 150x150 Image Section Right--->=20
+                   <table class=3D=22td334=22 width=3D=22528=22 border=3D=
+=220=22 cellpadding=3D=220=22 cellspacing=3D=220=22>
+					<tr>
+						<td colspan=3D=223=22><img class=3D=22heightHalf=22 style=3D=22outlin=
+e:none; text-decoration:none; -ms-interpolation-mode: bicubic; display:bloc=
+k;=22 src=3D=22https://static=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/su=
+rvey/contentlibrary/crm_recurring/new_basics_monthly_survey/Not_US-new-basi=
+cs-monthly-survey/images/spacer=2Egif=22 height=3D=2230=22 width=3D=222=22 =
+alt=3D=22=22></td>
+					</tr>
+					<tr>
+						<td align=3D=22left=22 valign=3D=22top=22 class=3D=22td334=22>
+						<font style=3D=22text-decoration:none; color:=23333333; font-size:28p=
+x; font-weight:200; font-family:helvetica, arial, sans-serif;=22>
+					   We Want Your Feedback
+						</font>
+                       =20
+                        <br><br>
+
+						<font style=3D=22text-decoration:none; color:=23666666; font-size:16p=
+x; line-height:21px; font-family:helvetica, arial, sans-serif;=22>
+			Thanks for being a SurveyMonkey customer=21 We=E2=80=99re always looking=
+ for ways to improve our product and experience for customers like you=2E P=
+lease complete our short survey today to tell us what you think: <br><br>
+
+   <a target=3D=22_new=22 href=3D=22https://go=2Esurveymonkey=2Ecom/pub/cc?=
+_ri_=3DX0Gzc2X%3DYQpglLjHJlTQGNwBONrzfOo6qRNzaCPvknKnbqhjtzaH3J7cLHquNrbR1W=
+DfEgLrp2J1OUX7edAAnVXtpKX%3DUTWYWR&_ei_=3DEolaGGF4SNMvxFF7KucKuWO7LdPjbZWJc=
+7oqoYZ2PDpxkqec73QeVSG1BOEcgCsK1lKCM3kVEpOy-2Y_sAZr3NR_EykOuWcA0etE_6_BTP3L=
+Yukv-CVYOy1vbsUBkLhjGLLpsik6RSf3Szz2rswzxJ3M39Ro9BtNlPSgRFLwuUj7Uw=2E=22 st=
+yle=3D=22
+						color: =23FFF;=20
+						font-family:Arial,Helvetica,sans-serif;
+						font-size: 16px;
+                        line-height: 40px;=20
+                        text-shadow: 0 -1px 0 =23444;
+						-webkit-border-radius: 5px;
+						-moz-border-radius: 5px;
+						border-radius: 5px;
+						outline: none;
+						cursor: pointer;
+						font-weight: bold;
+						white-space: nowrap;
+						text-decoration: none;
+						display: inline-block;
+						border: solid 1px =235f7f1f;
+						background-color: =2386A33B;=22>&nbsp; &nbsp; Take Survey &nbsp; &nbs=
+p;</a>
+
+				<br><br>
+We really appreciate your input=21<br><br>
+
+The SurveyMonkey Team=20
+						</font>
+                       =20
+	=09
+                       =20
+                    =20
+					=09
+						<br><br>
+                        <font style=3D=22text-decoration:none; color:=23666=
+666; font-size:11px; line-height:16px; font-family:helvetica, arial, sans-s=
+erif;=22></font>
+                       =20
+                        </td>
+						<td align=3D=22left=22 valign=3D=22top=22 class=3D=22hide=22><img sty=
+le=3D=22outline:none; text-decoration:none; -ms-interpolation-mode: bicubic=
+; display:block;=22 src=3D=22https://static=2Ecdn=2Eresponsys=2Enet/i2/resp=
+onsysimages/survey/contentlibrary/crm_recurring/new_basics_monthly_survey/N=
+ot_US-new-basics-monthly-survey/images/spacer=2Egif=22 height=3D=222=22 wid=
+th=3D=2220=22 alt=3D=22=22></td>
+						<td align=3D=22left=22 valign=3D=22top=22 class=3D=22hide=22><a targe=
+t=3D=22_new=22 href=3D=22https://go=2Esurveymonkey=2Ecom/pub/cc?_ri_=3DX0Gz=
+c2X%3DYQpglLjHJlTQGNwBONrzfOo6qRNzaCPvknKnbqhjtzaH3J7cLHquNrbR1WDfEgLrp2J1O=
+UX7edAAnVXtpKX%3DUTWYWR&_ei_=3DEolaGGF4SNMvxFF7KucKuWO7LdPjbZWJc7oqoYZ2PDpx=
+kqec73QeVSG1BOEcgCsK1lKCM3kVEpOy-2Y_sAZr3NR_EykOuWcA0etE_6_BTP3LYukv-CVYOy1=
+vbsUBkLhjGLLpsik6RSf3Szz2rswzxJ3M39Ro9BtNlPSgRFLwuUj7Uw=2E=22><img class=3D=
+=22image75=22 style=3D=22outline:none; text-decoration:none; -ms-interpolat=
+ion-mode: bicubic; display:block;=22 src=3D=22https://static=2Ecdn=2Erespon=
+sys=2Enet/i2/responsysimages/survey/contentlibrary/crm_recurring/new_basics=
+_monthly_survey/Not_US-new-basics-monthly-survey/images/150x150story=2Ejpg=
+=22 alt=3D=22Enter Contest=22></a></td>
+					</tr>
+                    <tr>
+						<td colspan=3D=223=22><img class=3D=22heightHalf=22 style=3D=22outlin=
+e:none; text-decoration:none; -ms-interpolation-mode: bicubic; display:bloc=
+k;=22 src=3D=22https://static=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/su=
+rvey/contentlibrary/crm_recurring/new_basics_monthly_survey/Not_US-new-basi=
+cs-monthly-survey/images/spacer=2Egif=22 height=3D=2230=22 width=3D=222=22 =
+alt=3D=22=22></td>
+					</tr>
+				</table>
+<=21---End 150x150 Image Section Right--->
+=09
+<=21---End Small 4x Promo Tile Set--->
+				</td>
+				<td class=3D=22hide=22 style=3D=22border-collapse: collapse;=22 width=
+=3D=2216=22 bgcolor=3D=22=23EFEFEF=22><img style=3D=22outline:none; text-de=
+coration:none; -ms-interpolation-mode: bicubic; display:block;=22 src=3D=22=
+https://static=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/survey/contentlib=
+rary/crm_recurring/new_basics_monthly_survey/Not_US-new-basics-monthly-surv=
+ey/images/spacer=2Egif=22 width=3D=2216=22 alt=3D=22=22></td>
+			</tr>
+		</table>
+		<table class=3D=22table=22 width=3D=22600=22 border=3D=220=22 cellpadding=
+=3D=220=22 cellspacing=3D=220=22>
+			<tr>
+				<td style=3D=22border-collapse: collapse;=22 width=3D=2264=22 height=3D=
+=2220=22 bgcolor=3D=22=23EFEFEF=22><img style=3D=22outline:none; text-decor=
+ation:none; -ms-interpolation-mode: bicubic; display:block;=22 src=3D=22htt=
+ps://static=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/survey/contentlibrar=
+y/crm_recurring/new_basics_monthly_survey/Not_US-new-basics-monthly-survey/=
+images/spacer=2Egif=22 width=3D=2264=22 height=3D=2220=22 alt=3D=22=22></td>
+			</tr>
+		</table>
+
+<=21---Start social--->
+		<table class=3D=22table=22 width=3D=22600=22 border=3D=220=22 cellpadding=
+=3D=220=22 cellspacing=3D=220=22>
+			<tr>
+				<td align=3D=22center=22 valign=3D=22middle=22 class=3D=22table=22 styl=
+e=3D=22border-collapse: collapse; line-height:20px;=22 width=3D=22600=22 bg=
+color=3D=22=23EFEFEF=22>
+				<table class=3D=22table=22 border=3D=220=22 cellpadding=3D=220=22 cells=
+pacing=3D=220=22 width=3D=22600=22>
+					<tr>
+						<td style=3D=22border-collapse: collapse;=22 bgcolor=3D=22=23EFEFEF=
+=22 width=3D=2210=22><img style=3D=22outline:none; text-decoration:none; -m=
+s-interpolation-mode: bicubic; display:block;=22 src=3D=22https://static=2E=
+cdn=2Eresponsys=2Enet/i2/responsysimages/survey/contentlibrary/crm_recurrin=
+g/new_basics_monthly_survey/Not_US-new-basics-monthly-survey/images/spacer=
+=2Egif=22 alt=3D=22=22 width=3D=2210=22></td>
+						<td style=3D=22border-collapse: collapse;=22 align=3D=22left=22 valig=
+n=3D=22middle=22><a target=3D=22_blank=22 href=3D=22https://go=2Esurveymonk=
+ey=2Ecom/pub/cc?_ri_=3DX0Gzc2X%3DYQpglLjHJlTQGNwBONrzfOo6qRNzaCPvknKnbqhjtz=
+aH3J7cLHquNrbR1WDfEgLrp2J1OUX7edAAnVXtpKX%3DUUDBSU&_ei_=3DEolaGGF4SNMvxFF7K=
+ucKuWO7LdPjbZWJc7oqoYZ2PDpxLbrJ4gVDdn6qrpfR6MPfyEsp7mbwaL7cSyd0l1KcBlrMEWRN=
+jDvFJomy7YEAVS1i=2E=22><img style=3D=22outline:none; text-decoration:none; =
+-ms-interpolation-mode: bicubic; display:block;=22 src=3D=22https://static=
+=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/survey/contentlibrary/images/23=
+x23social_facebook=2Egif=22 alt=3D=22=22 border=3D=220=22 height=3D=2223=22=
+ width=3D=2223=22></a></td>
+						<td style=3D=22border-collapse: collapse;=22 align=3D=22left=22 valig=
+n=3D=22middle=22><a target=3D=22_blank=22 href=3D=22https://go=2Esurveymonk=
+ey=2Ecom/pub/cc?_ri_=3DX0Gzc2X%3DYQpglLjHJlTQGNwBONrzfOo6qRNzaCPvknKnbqhjtz=
+aH3J7cLHquNrbR1WDfEgLrp2J1OUX7edAAnVXtpKX%3DUUDBSW&_ei_=3DEolaGGF4SNMvxFF7K=
+ucKuWO7LdPjbZWJc7oqoYZ2PDpxLbrJ4gVDdn6qrpfR6MPfyEsp7mbwaL7cSyd0l1KcBlrMEWRN=
+jDvFJomy7YEAVS1i=2E=22><img style=3D=22outline:none; text-decoration:none; =
+-ms-interpolation-mode: bicubic; display:block;=22 src=3D=22https://static=
+=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/survey/contentlibrary/images/23=
+x23social_twitter=2Egif=22 alt=3D=22=22 border=3D=220=22 height=3D=2223=22 =
+width=3D=2223=22></a></td>
+						<td style=3D=22border-collapse: collapse;=22 align=3D=22left=22 valig=
+n=3D=22middle=22><a target=3D=22_blank=22 href=3D=22https://go=2Esurveymonk=
+ey=2Ecom/pub/cc?_ri_=3DX0Gzc2X%3DYQpglLjHJlTQGNwBONrzfOo6qRNzaCPvknKnbqhjtz=
+aH3J7cLHquNrbR1WDfEgLrp2J1OUX7edAAnVXtpKX%3DUUDBSY&_ei_=3DEolaGGF4SNMvxFF7K=
+ucKuWO7LdPjbZWJc7oqoYZ2PDpxLbrJ4gVDdn6qrpfR6MPfyEsp7mbwaL7cSyd0l1KcBlrMEWRN=
+jDvFJomy7YEAVS1i=2E=22><img style=3D=22outline:none; text-decoration:none; =
+-ms-interpolation-mode: bicubic; display:block;=22 src=3D=22https://static=
+=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/survey/contentlibrary/images/23=
+x23social_linkedin=2Egif=22 alt=3D=22=22 border=3D=220=22 height=3D=2223=22=
+ width=3D=2223=22></a></td>
+						<td style=3D=22border-collapse: collapse;=22 align=3D=22left=22 valig=
+n=3D=22middle=22><a target=3D=22_blank=22 href=3D=22https://go=2Esurveymonk=
+ey=2Ecom/pub/cc?_ri_=3DX0Gzc2X%3DYQpglLjHJlTQGNwBONrzfOo6qRNzaCPvknKnbqhjtz=
+aH3J7cLHquNrbR1WDfEgLrp2J1OUX7edAAnVXtpKX%3DUUDBSA&_ei_=3DEolaGGF4SNMvxFF7K=
+ucKuWO7LdPjbZWJc7oqoYZ2PDpxLbrJ4gVDdn6qrpfR6MPfyEsp7mbwaL7cSyd0l1KcBlrMEWRN=
+jDvFJomy7YEAVS1i=2E=22><img style=3D=22outline:none; text-decoration:none; =
+-ms-interpolation-mode: bicubic; display:block;=22 src=3D=22https://static=
+=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/survey/contentlibrary/images/23=
+x23social_gplus=2Egif=22 alt=3D=22=22 border=3D=220=22 height=3D=2223=22 wi=
+dth=3D=2223=22></a></td>
+						<td style=3D=22border-collapse: collapse;=22 align=3D=22left=22 valig=
+n=3D=22middle=22><a target=3D=22_blank=22 href=3D=22https://go=2Esurveymonk=
+ey=2Ecom/pub/cc?_ri_=3DX0Gzc2X%3DYQpglLjHJlTQGNwBONrzfOo6qRNzaCPvknKnbqhjtz=
+aH3J7cLHquNrbR1WDfEgLrp2J1OUX7edAAnVXtpKX%3DUUDBSB&_ei_=3DEolaGGF4SNMvxFF7K=
+ucKuWO7LdPjbZWJc7oqoYZ2PDpxLbrJ4gVDdn6qrpfR6MPfyEsp7mbwaL7cSyd0l1KcBlrMEWRN=
+jDvFJomy7YEAVS1i=2E=22><img style=3D=22outline:none; text-decoration:none; =
+-ms-interpolation-mode: bicubic; display:block;=22 src=3D=22https://static=
+=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/survey/contentlibrary/images/23=
+x23social_blog=2Egif=22 alt=3D=22=22 border=3D=220=22 height=3D=2223=22 wid=
+th=3D=2223=22></a></td>
+						<td class=3D=22hide=22 style=3D=22border-collapse: collapse;=22 align=
+=3D=22left=22 valign=3D=22middle=22 width=3D=22180=22><font style=3D=22font=
+-family:arial; font-size:12px; line-height:18px; color:=23000000;=22><b>Sta=
+y connected=2E</b></font></td>
+						<td style=3D=22border-collapse: collapse;=22 align=3D=22right=22 vali=
+gn=3D=22top=22>
+						<a target=3D=22_blank=22 href=3D=22https://go=2Esurveymonkey=2Ecom/pu=
+b/cc?_ri_=3DX0Gzc2X%3DYQpglLjHJlTQGNwBONrzfOo6qRNzaCPvknKnbqhjtzaH3J7cLHquN=
+rbR1WDfEgLrp2J1OUX7edAAnVXtpKX%3DUUDBSC&_ei_=3DEolaGGF4SNMvxFF7KucKuWO7LdPj=
+bZWJc7oqoYZ2PDpxLbrJ4gVDdn6qrpfR6MPfyEsp7mbwaL7cSyd0l1KcBlrMEWRNjDvFJomy7YE=
+AVS1i=2E=22><img class=3D=22td100=22 src=3D=22https://static=2Ecdn=2Erespon=
+sys=2Enet/i2/responsysimages/survey/contentlibrary/images/download_on_the_A=
+pp_Store_Badge=2Epng=22 height=3D=2230=22 border=3D=220=22/></a>
+						<a target=3D=22_blank=22 href=3D=22https://go=2Esurveymonkey=2Ecom/pu=
+b/cc?_ri_=3DX0Gzc2X%3DYQpglLjHJlTQGNwBONrzfOo6qRNzaCPvknKnbqhjtzaH3J7cLHquN=
+rbR1WDfEgLrp2J1OUX7edAAnVXtpKX%3DUUDBSD&_ei_=3DEolaGGF4SNMvxFF7KucKuWO7LdPj=
+bZWJc7oqoYZ2PDpxLbrJ4gVDdn6qrpfR6MPfyEsp7mbwaL7cSyd0l1KcBlrMEWRNjDvFJomy7YE=
+AVS1i=2E=22><img style=3D=22padding-left:10px;=22 class=3D=22td100=22 src=
+=3D=22https://static=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/survey/cont=
+entlibrary/images/android_badge=2Epng=22 border=3D=220=22 height=3D=2230=22=
+/></a>
+						</td>
+						<td style=3D=22border-collapse: collapse;=22 bgcolor=3D=22=23EFEFEF=
+=22 width=3D=2210=22><img style=3D=22outline:none; text-decoration:none; -m=
+s-interpolation-mode: bicubic; display:block;=22 src=3D=22https://static=2E=
+cdn=2Eresponsys=2Enet/i2/responsysimages/survey/contentlibrary/crm_recurrin=
+g/new_basics_monthly_survey/Not_US-new-basics-monthly-survey/images/spacer=
+=2Egif=22 alt=3D=22=22 width=3D=2210=22></td>
+					</tr>
+				</table>
+				</td>
+			</tr>
+			<tr>
+				<td style=3D=22border-collapse: collapse;=22 width=3D=2264=22 height=3D=
+=2215=22 bgcolor=3D=22=23EFEFEF=22 class=3D=22table=22><img style=3D=22outl=
+ine:none; text-decoration:none; -ms-interpolation-mode: bicubic; display:bl=
+ock;=22 src=3D=22https://static=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/=
+survey/contentlibrary/crm_recurring/new_basics_monthly_survey/Not_US-new-ba=
+sics-monthly-survey/images/spacer=2Egif=22 width=3D=2264=22 height=3D=2215=
+=22 alt=3D=22=22 /></td>
+			</tr>
+		</table>
+<=21---End social---><br/>
+		<table class=3D=22table=22 width=3D=22600=22 border=3D=220=22 cellpadding=
+=3D=220=22 cellspacing=3D=220=22>
+			<tr>
+				<td class=3D=22hide=22 style=3D=22border-collapse: collapse;=22 width=
+=3D=2214=22 bgcolor=3D=22=23EFEFEF=22><img style=3D=22outline:none; text-de=
+coration:none; -ms-interpolation-mode: bicubic; display:block;=22 src=3D=22=
+https://static=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/survey/contentlib=
+rary/crm_recurring/new_basics_monthly_survey/Not_US-new-basics-monthly-surv=
+ey/images/spacer=2Egif=22 width=3D=2214=22 alt=3D=22=22></td>
+				<td align=3D=22left=22 valign=3D=22top=22 class=3D=22table=22 style=3D=
+=22border-collapse: collapse; line-height:20px;=22 width=3D=22720=22 bgcolo=
+r=3D=22=23EFEFEF=22>
+				<font style=3D=22font-family:arial; font-size:12px; line-height:24px; c=
+olor:=23999999;=22>
+				This e-mail was sent to vygantas=2Ebutkus=40gmail=2Ecom and contains in=
+formation directly related to your account=2E<br>
+				<a target=3D=22_new=22 href=3D=22https://go=2Esurveymonkey=2Ecom/pub/op=
+tout?_ri_=3DX0Gzc2X%3DYQpglLjHJlTQGNwBONrzfOo6qRNzaCPvknKnbqhjtzaH3J7cLHquN=
+rbR1WDfEgLrp2J1OUX7edAAn&_ei_=3DEolaGGF4SNMvxFF7KucKuWO7LdPjbZWJc7oqoYZ2PDp=
+xLbrJ4gVDdn6qrpfR6MPfyEsp7mbwaL7cSyd0l1KcBlrMEWRNjDvFJomy7YEAVS1i=22 style=
+=3D=22font-family:arial; font-size:12px; color:=23999999; font-weight:bold;=
+ text-decoration:none;=22>Unsubscribe</a>&nbsp; &nbsp;=7C&nbsp; &nbsp;
+				<a target=3D=22_new=22 href=3D=22https://go=2Esurveymonkey=2Ecom/pub/cc=
+?_ri_=3DX0Gzc2X%3DYQpglLjHJlTQGNwBONrzfOo6qRNzaCPvknKnbqhjtzaH3J7cLHquNrbR1=
+WDfEgLrp2J1OUX7edAAnVXtpKX%3DUUDBTR&_ei_=3DEolaGGF4SNMvxFF7KucKuWO7LdPjbZWJ=
+c7oqoYZ2PDpxLbrJ4gVDdn6qrpfR6MPfyEsp7mbwaL7cSyd0l1KcBlrMEWRNjDvFJomy7YEAVS1=
+i=2E=22 style=3D=22font-family:arial; font-size:12px; color:=23999999; text=
+-decoration:none;=22>Privacy</a>&nbsp; &nbsp;=7C&nbsp; &nbsp;
+				<a target=3D=22_new=22 href=3D=22https://go=2Esurveymonkey=2Ecom/pub/cc=
+?_ri_=3DX0Gzc2X%3DYQpglLjHJlTQGNwBONrzfOo6qRNzaCPvknKnbqhjtzaH3J7cLHquNrbR1=
+WDfEgLrp2J1OUX7edAAnVXtpKX%3DUUDBTS&_ei_=3DEolaGGF4SNMvxFF7KucKuWO7LdPjbZWJ=
+c7oqoYZ2PDpxLbrJ4gVDdn6qrpfR6MPfyEsp7mbwaL7cSyd0l1KcBlrMEWRNjDvFJomy7YEAVS1=
+i=2E=22 style=3D=22font-family:arial; font-size:12px; color:=23999999; text=
+-decoration:none;=22>Help</a><br>
+				&copy; <span class=3D=22appleLinks=22>2016 SurveyMonkey, 101 Lytton Ave=
+nue, Palo Alto, CA 94301, USA=2E</span>
+				</font>
+				<br><br>
+				</td>
+				<td class=3D=22hide=22 style=3D=22border-collapse: collapse;=22 width=
+=3D=2216=22 bgcolor=3D=22=23EFEFEF=22><img style=3D=22outline:none; text-de=
+coration:none; -ms-interpolation-mode: bicubic; display:block;=22 src=3D=22=
+https://static=2Ecdn=2Eresponsys=2Enet/i2/responsysimages/survey/contentlib=
+rary/crm_recurring/new_basics_monthly_survey/Not_US-new-basics-monthly-surv=
+ey/images/spacer=2Egif=22 width=3D=2216=22 alt=3D=22=22></td>
+			</tr>
+		</table>
+<=21---End Footer--->
+		</td>
+	</tr>
+</table><br>
+<br><table cellpadding=3D=220=22 cellspacing=3D=220=22 style=3D=22border: 0=
+px; padding: 0px; margin: 0px; position: absolute; float: left=22><tr><td h=
+eight=3D=221=22 style=3D=22font-size: 1px; line-height: 1px; padding: 0px;=
+=22><img height=3D=221=22 width=3D=221=22 style=3D =22padding: 0px 0px; =21=
+important; margin: 0px 0px; font-size: 1px; line-height: 1px;=22 src=3D=22h=
+ttp://go=2Esurveymonkey=2Ecom/pub/as?_ri_=3DX0Gzc2X%3DYQpglLjHJlTQGNwBONrzf=
+Oo6qRNzaCPvknKnbqhjtzaH3J7cLHquNrbR1WDfEgLrp2J1OUX7edAAnVXHkMX%3Dw&_ei_=3DE=
+olaGGF4SNMvxFF7KucKuWO7LdPjbZWJc7oqoYZ2PDpxLbrJ4gVDdn6qrpfR6MPfyEsp7mbwaL7c=
+Syd0l1KcBlrMEWRNjDvFJomy7YEAVS1i=2E=22></img></td></tr></table>
+</body>
+</html>
+
+
