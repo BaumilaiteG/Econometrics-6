@@ -1,0 +1,232 @@
+---
+title: "Praktinės ekonometrijos egzaminas"
+author: "Vygantas Butkus"
+date: "2016-05-31"
+output: html_document
+---
+
+Metodinės pastabos
+===================================================================
+
+* Jūs turite teisę modifikuoti užduotį. Tarkime kuris nors klausimas jums yra per sunkus ir nežinote kaip jį daryti.
+  Jūs vis dar galite gauti taškų iš jo (bent jau jų dalį). 
+  Jūs galite supaprastinti klausimą taip, kad jau sugebėtumėte į jį atsakyti.
+  Tokiu atveju turi aiškiai parašyti kokį supaprastinimą pritaikėte.
+  
+* Užduoties metu jums reikia užtikrinti, kad analizė daroma korektiškai, todėl, 
+jei analizės metu pastebėjote kokius nors trūkumus, turite pasiūlyti savo sprendimą, ištaisyti ir tai parašyti ataskaitoje.  
+  
+* Visų jūsų sprendimai ir atsakymai turi būti pagrįsti. Neužtenka pasakyti, kad "iš lentelės matome, kad ...".
+  Reikia detaliau parašyti - iš kurio skaičiaus? Jeigu reikia pasirinkti iš kelių variantų jūs turėte argumentuoti kodėl pirmenybę teikiate savo pasirinkimui.
+  
+* Ataskaitoje turi būti matomas visas R kodas.
+
+* Grafikai ir lentelės turi būti aiškūs. Suprantama, kad neturite laiko jų nugludinti, bet turite užtikrinti, 
+kad iš grafiko būtų aišku kas čia pavaizduota. Pvz. jei $x$ ašis pažymėta "data[,2]", tai tikrai negerai.
+Jei grafike pavaizduotos kelios linijos, tai turi būti paaiškinimas kur yra kokia linija - 
+geriausia legendoje, bet galima ir komentare iš karto po grafiku.
+
+* Atkreipkite dėmesį į `factor` duomenų tipą. Žinokite kada reikia jį naudoti ir kaip jį modifikuoti.
+
+* Reikalingi paketai: car, fpp, dynlm.  
+
+* Atliktą užduotį įkelkite į Git Hub savo repozitoriją. Įkelkite ir Rmd failą ir sugeneruotą html failą.
+
+
+Užduotys
+===================================================================
+
+Užduotis 1 (numatyta 20 taškų)
+--------------------------------------------------
+
+Žaidėjas lošia tokį žaidimą. Metami du lošimo kauliukai. Iškritusių akučių sumą pažymėkime $Y$.
+Po to metama moneta. Jei iškrito herbas, tai žaidėjas laimi sumą $Y$, o jei skaičius, tai žaidėjas pralošė sumą $Y$.
+Žaidėjo gautų (arba praloštų) pinigų sumą pažymėkime $X$.
+
+  a) Raskite $X$ teorinį skirstinį. Išbrėžkite tikimybių grafiką.
+
+  b) Sugeneruokite $X$ imtį ($N=10000$). 
+
+  c) Palyginkite sugeneruotą $X$ empirinį skirstinį su teorinį skirstiniu.  
+  Palyginimui pateikite tikimybių grafikus ir skirstinių charakteristikas 
+  (vidurkį, medianą ir standartinį nuokrypį).
+
+ d) Įvertinkite įvykio $|S-3|-5>0$ tikimybę. 
+  Vertinimą atlikite dviem būdais: Monte Carlo metodu ir teoriškai.
+  
+  e) Tarkime, kad iškrito herbas. Kokia dabar įvykio $|S-3|-5>0$ tikimybė? 
+  Suskaičiuokite Monte Carlo metodu ir teoriškai.
+
+Užduotis 2 (numatyta 30 taškų)
+--------------------------------------------------
+  
+Faile 'data_a.csv' yra pateikti duomenys reikalingi tiesinės regresijos tyrimui. 
+Duomenų masyvo aprašymas pateiktas minėto failo pradžioje.
+
+1. Duomenų apžvalga ir paruošimas. Šioje dalyje jums reikia susipažinti su duomenimis 
+ir paruošti duomenis tolimesnei analizei. 
+
+  a) Nuskaitykite duomenų masyvą. Jeigu įmanoma, nekoreguokite originalaus failo.
+
+  b) Paruoškite duomenis naudojimui. Jūs turite užtikrinti, kad:
+    
+    * Neliko įrašų su trūkstamomis reikšmėmis - jeigu šalinote įrašus, 
+    tai būtinai raportuokite kiek įrašų pašalinta ir kiek liko.
+
+    * Duomenų masyve nėra kažkokių klaidų (pvz. negalimos reikšmės, neteisingas duomenų tipas, 
+    didelės išskirtys ir t.t.) 
+    
+  c) Pateikite trumpą kintamųjų apžvalgą. Naudokite tik tuos duomenis (ir kintamuosius), kuriuos planuojate taikyti tyrimui, 
+  t.y. jei reikėjo ką nors modifikuoti, tai senųjų reikšmių naudoti nebereikia. 
+  Šiai apžvalgai užtenka informacijos, kurią pateikia funkcijos `plot`, `summary` ir `cor`. 
+  
+
+  d) Duomenų masyvą suskaidykite į du atskirus ir nesikertančius masyvus. 
+  Didesnį masyvą turi sudaryti apie 80 proc. turimų stebėjimų. Šį masyvą vadinsime `trainSet`.
+  Mažesnį masyvą turi sudaryti likę įrašai. Šį masyvą vadinsime `testSet`.
+  Duomenų suskaidymas turi būti atsitiktinis. Gali būti naudingos šios funkcijos:`sample`, `setdiff`, `%in%`.
+
+2. Tiesinio modelio sudarymas. Modelio sudarymui naudokite `trainSet` masyvą.
+
+  a) Įvertinkite tiesinį modelių, kuriame 
+prognozuojamas kintamasis būtų kaina. Ji turi tiesiškai priklausyti nuo 
+kitų kintamųjų. 
+
+  b) Ar visi įtraukti kintamieji daro reikšmingą įtaką prognozei?
+  Jei ne, koreguokite modelį, kad visi kintamieji darytų reikšmingą įtaką. 
+
+
+  c) Patikrinkite modelio savybes (multikolinerumą, heteroskedastiškumą ir paklaidų normalumą). 
+  Jei kuri nors savybė nėra gera, 
+tai pakomentuokite kokios to gali būti pasekmės (ar rizikos).
+
+
+3. Modelio tobulinimas. Ar gali būti, kad duomenyse pasireiškė netiesinė sąveika?
+Siekiant ją patikti prasminga pasižiūrėti sklaidos diagramą tarp modelio paklaidų 
+ir tiriamų kintamųjų.
+
+  a) Pateikite dvi sklaidos diagramas. Pirmoji tarp modelio paklaidų ir ridos kintamojo. 
+  O antroji, tarp modelio paklaidų ir amžiaus kintamojo. Pakomentuokite rezultatus.
+Tendencijų išryškinimui gali būti naudinga `lowess` funkcija.
+
+  b) Tikėtina, kad ne visų duomenų priklausomybė yra tiesinė. 
+  Kokius pakeitimus siūlytumėte? Pabandykite sumažinti
+  netiesiškumo pasekmes. Galutinį modelio variantą žymėsime `fit2`.
+
+
+4. Modelių palyginimas ir prognozė. 
+  
+  a) Suskaičiuokite modelių `fit1` ir `fit2` RMSE,
+  $$ RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^n \varepsilon_t^2}.$$
+  
+  RMSE suskaičiuokite abiem duomenų masyvams `trainSet` ir `testSet`. 
+  Rezultatus sudėkite į lentelę.
+  Palyginkite rezultatus ir padarykite išvadas.
+  Kuris modelis geresnis? Geresnį modelį žymėsime `fitMain`. 
+  Užrašykite šio modelio lygtį.
+
+
+  b) Išbrėžkite sklaidos diagramą, kurioje $x$ ašyje būtų `fitMain` modelio `testSet` prognozė, o $y$ ašyje
+  faktinės `testSet` kainų reikšmės. Ant šios sklaidos diagramos išbrėžkite dvi linijas, kurios žymėtų 
+  prognozės pasikliautinus intervalus (pasikliovimo lygmuo 90 proc.).
+
+
+  c) Kiek procentų prognozuotų reikšmių nepateko į pasikliautinus intervalus?
+
+
+Užduotis 3 (numatyta 50 taškų)
+--------------------------------------------------
+Pakete `dynlm` yra duomenų masyvas `M1Germany` (ten yra ir duomenų aprašymas).
+
+1. Duomenų paruošimas. 
+
+  a) Įvertinkite tiesinę regresija žemiau pateikto modelio:
+
+  $$logm1_t = \beta_0 + \beta_1 logprice_{t-1} + \varepsilon_t.$$
+
+  b) Gaukite įvertintos lygties liekanas. Jas vadinsime `serOrg`. 
+  Rekomenduojama liekanų objektą transformuoti į laiko eilučių klasę (`ts`).
+  
+  c) Išbrėžkite `serOrg` grafiką. Turi būti stebimas sezoniškumas.
+  Jūsų tikslas - pašalinti sezoniškumą. Tam pritaikykite du būdus: 
+  
+    * Pirmasis būdas yra panaudoti funkciją  `stl`. Jos išvestyje yra objektas `time.series`, 
+    kurio vienas iš stulpelių yra įvertinti sezoniniai svyravimai. Šiuos svyravimus 
+    reikia atimti iš `serOrg` laiko eilutės - taip gausite laiko eilutę be sezoninių svyravimų.
+
+    * Sudaryti tiesinę regresiją, kurios prognozuojamas kintamasis būtų `serOrg`, 
+    o  vienintelis egzogeninis kintamasis būtų laikotarpio sezonas. Šios regresijos liekanos
+    taip pat galima laikyti `serOrg` eilutė iš kurios pašalintas sezonas.
+    
+
+  Palyginkite abių būdų rezultatus. Kuriam iš jų jūs teikiate pirmenybę. 
+  Jūsų pasirinktu būdu gautą nusezonintą eilutę
+  žymėsime `ser`.
+
+  d) Ar `ser` laiko eilutė stacionari. Jei ne - raskite skirtumų operacijas, kurios pasiektų stacionarumą.
+  Jeigu naudojate automatines procedūras, tai atsakymą patikrinkite ekspertiškai.
+
+
+
+  e) Pagalvokite ar eilutei `ser` reikalinga Box-Cox transformaciją - sprendimą argumentuokite.
+  Jei reikalinga, tai užtikrinkite, kad
+  visi žemiau panaudoti modeliai naudotų tą pačią transformaciją.
+
+
+2. Modeliavimas.
+
+  a)  Eilutei `ser` panaudoje `ets` funkcija raskite siūlomą eksponentinio glodinimo modelį.
+  Paaiškinkite ką reiškia modelio žymėjimai. Šį modeli vadinsime `mod1`.
+
+
+  b) Pabandykite paieškoti geresnių alternatyvų. Išbandykite kitus du variantus.
+Kuris modelis atrodo geriausias? Kodėl? Geriausią pasirinktą modelį vadinsime `mod2`.
+Aiškiai įvardinkite kurį modelį pasirinkote. Kuo jis skiriasi nuo `mod1`?
+
+
+  c) Eilutei `ser` pritaikykite `auto.arima` funkciją. 
+Pakomentuokite ką reiškia modelio žymėjimai? Šį modelį vadinsime `mod3`. 
+Ar pasiūlyta integruotumo eilė sutampa su 1.d atsakyme jūsų pasiūlyta eile.
+
+
+  d) Paeksperimentuokite su kitomis galimomis specifikacijomis (pabandykite bent dvi).
+  Kuri atrodo geriausia? Pasirinktą modelį vadinsime `mod4`.  
+
+
+3. Modelių tyrimas ir palyginimas
+
+  a) Patikrinkite visų keturių modelių liekanas - ar jos atrodo kaip baltas triukšmas?  
+
+  b) Turimą laiko eilutę `ser` sumažinkite taip, kad ją sudarytų apie 75-80 proc. 
+  pirmųjų stebėjimų - 
+  šią eilutę vadinsime `trainSet`. Likusią eilutės dalį vadinsime `testSet`.
+
+  c) Įvertinkite visus keturis modelius naudodami `trainSet`.
+
+  d) Išbrėžkite visų keturių modelių prognozes (su pasikliautinais intervalais). 
+  Ir ant viršau išbrėžkite faktines reikšmes iš
+   `testSet` duomenų. Kuri prognozė atrodo geriausia?
+
+  e) Patikrinkite visų modelių tikslumą su funkciją `accuracy`. 
+  Turi matytis tikslumas `trainSet` ir `testSet` duomenims.
+  Kuris modelis atrodo geriausias? 
+  Pasirinktą modelį vadinsime `modMain`.
+
+4. Tikslumo tyrimas. Parašykite R procedūrą, kurios psiaudo-kodas atorodo taip:
+
+```
+tikslumas(i):
+    trainSet = eilutės ser dalis nuo pirmo stebėjimo iki i-tojo.
+    testSet = eilutės ser like stebejimai
+    fit = įvertinamas modMain modelis naudojant trainSet duomenis
+    ans = suskaičiuojamas medelio RMSE trainSet ir testSet duomenims.
+    funkcija grąžina ans kintamąjį
+```
+
+
+
+Šią funkciją pritaikykite skirtingiems i ir išbrėžkite grafiką, kuriame matytųsi RMSE priklausomybę nuo i.
+Kokias išvadas galite padaryti?
+   
+
+
