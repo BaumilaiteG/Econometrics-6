@@ -1412,6 +1412,19 @@ Korektiškai taikyti tiesinę regresiją laiko eilutėm galima dviem atvejais:
 Jei duomenys netenkina šių savybių, tai reikia taikyti kokias nors transformacijas, kad jas išgauti.
 
 
+<--
+Teroristu uzdavinys - susipazinti su sapygine tikimybe
+
+Kitas uzdavinys susipazinti su salyginiu skirstiniu:
+x1 ~ N(2,2)
+x2 ~ N(-1, 3)
+X = x1 + x2 
+E(x1 | X=4 )
+P(x1<2 | X=4)
+
+-->
+
+
 
 References
 ============================================================

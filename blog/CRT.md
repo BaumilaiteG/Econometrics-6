@@ -19,9 +19,13 @@ kurią ir iliustruosime šiame tinklaraščio įraše.
 
 Lindeberg–Lévy CLT. Tarkime {*X*<sub>1</sub>, *X*<sub>2</sub>, ...}
 nepriklausomų atsitiktinių dydžių seka su vidurkiu
-*E*[*X*<sub>*i*</sub>] = *μ* ir
-*V**a**r*[*X*<sub>*i*</sub>] = *σ*<sup>2</sup> \< ∞. Kuomet *n* artėja į
-begalybę, tuomet
+*E*\[*X*<sub>*i*</sub>\]=*μ* ir
+*V**a**r*\[*X*<sub>*i*</sub>\]=*σ*<sup>2</sup> &lt; ∞. Kuomet *n* artėja
+į begalybę, tuomet
+
+$$Y=\\alpha+\\beta X+\\varepsilon\_i \\sqrt{n}$$
+
+*Y*
 
 $$\\sqrt{n}\\bigg(\\bigg(\\frac{1}{n}\\sum\_{i=1}^n X\_i\\bigg) - \\mu\\bigg)\\ \\xrightarrow{d}\\ N(0,\\;\\sigma^2).$$
 

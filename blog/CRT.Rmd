@@ -26,6 +26,7 @@ tai labai benda (ir galinga) savybė, kurią ir iliustruosime šiame tinklaraš�
 Lindeberg–Lévy CLT. Tarkime $\{X_1, X_2, ...\}$ nepriklausomų atsitiktinių dydžių seka su vidurkiu $E[X_i] = \mu$ 
 ir $Var[X_i] = \sigma^2 < \infty$. Kuomet $n$ artėja į begalybę, tuomet
 
+$$Y=\alpha+\beta X+\varepsilon_i \sqrt{n}$$ 
 
 $$\sqrt{n}\bigg(\bigg(\frac{1}{n}\sum_{i=1}^n X_i\bigg) - \mu\bigg)\ \xrightarrow{d}\ N(0,\;\sigma^2).$$
 
